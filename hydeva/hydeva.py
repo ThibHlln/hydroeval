@@ -201,14 +201,3 @@ def pbias(simulation, evaluation):
     pbias_ = 100 * np.sum(evaluation - simulation) / np.sum(evaluation)
 
     return pbias_
-
-
-obs = np.asarray([[1, np.nan, 3]]).T
-sim = np.asarray([[1, 2, 3],
-                  [1, 3, 3],
-                  [1, 2, 3]]).T
-# sim = np.asarray([[1, 2, 3]]).T
-
-r = evaluator(rmse, sim, obs, axis=0)
-
-print r
