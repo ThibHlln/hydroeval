@@ -27,6 +27,7 @@ def evaluator(func, simulation_s, evaluation, axis=1):
     assert isinstance(evaluation, np.ndarray)
     assert (axis == 0) or (axis == 1)
 
+    # check that the evaluation data provided is a single series of data
     if evaluation.ndim == 1:
         my_eval = evaluation
     elif evaluation.ndim == 2:
@@ -42,18 +43,35 @@ def evaluator(func, simulation_s, evaluation, axis=1):
     else:
         raise Exception('The evaluation array contains more than 2 dimensions.')
 
+    # proceed according to the dimension of the simulation array (1D or 2D)
     if simulation_s.ndim == 1:
         if simulation_s.size == my_eval.size:
-            return func(simulation_s, my_eval)
+            # select subset of both series given the data availability in evaluation
+            my_simu = simulation_s[~np.isnan(my_eval)]
+            my_eval = my_eval[~np.isnan(my_eval)]
+            return func(my_simu, my_eval)
         else:
             raise Exception('Simulation and evaluation arrays must be the same length.')
     elif simulation_s.ndim == 2:
-        if simulation_s.shape[axis] == my_eval.size:
-            other_axis = 0 if axis == 1 else 1
-            if simulation_s.shape[other_axis] > 1:
-                return np.apply_along_axis(func, axis, simulation_s, my_eval)
-            else:
-                return np.apply_along_axis(func, axis, simulation_s, my_eval)[0]
+        if simulation_s.shape[axis] == my_eval.size:  # check if lengths match (with default/user-defined axis)
+            if axis == 1:
+                if simulation_s.shape[0] > 1:
+                    my_simu = simulation_s[:, ~np.isnan(my_eval)]
+                    my_eval = my_eval[~np.isnan(my_eval)]
+                    return np.apply_along_axis(func, axis, my_simu, my_eval)
+                else:
+                    my_simu = simulation_s[0, :][~np.isnan(my_eval)]
+                    my_eval = my_eval[~np.isnan(my_eval)]
+                    return func(my_simu, my_eval)
+            else:  # axis == 0
+                if simulation_s.shape[1] > 1:
+                    my_simu = simulation_s[~np.isnan(my_eval), :]
+                    my_eval = my_eval[~np.isnan(my_eval)]
+                    return np.apply_along_axis(func, axis, my_simu, my_eval)
+                else:
+                    my_simu = simulation_s[:, 0][~np.isnan(my_eval)]
+                    my_eval = my_eval[~np.isnan(my_eval)]
+                    return func(my_simu, my_eval)
         else:
             raise Exception('Simulation and evaluation arrays must be the same length.')
     else:
@@ -183,3 +201,14 @@ def pbias(simulation, evaluation):
     pbias_ = 100 * np.sum(evaluation - simulation) / np.sum(evaluation)
 
     return pbias_
+
+
+obs = np.asarray([[1, np.nan, 3]]).T
+sim = np.asarray([[1, 2, 3],
+                  [1, 3, 3],
+                  [1, 2, 3]]).T
+# sim = np.asarray([[1, 2, 3]]).T
+
+r = evaluator(rmse, sim, obs, axis=0)
+
+print r
