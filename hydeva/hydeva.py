@@ -47,7 +47,7 @@ def evaluator(func, simulation_s, evaluation, axis=1, transform=None, epsilon=No
     if transform == 'log':  # log transformation
         if not epsilon:
             # determine an epsilon value to avoid log of zero (following recommendation in Pushpalatha et al. (2012))
-            epsilon = 0.01 * np.mean(evaluation)
+            epsilon = 0.01 * np.mean(my_eval)
         my_eval, my_simu = np.log(my_eval + epsilon), np.log(simulation_s + epsilon)
     elif transform == 'inv':  # inverse transformation
         if not epsilon:
