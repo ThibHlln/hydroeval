@@ -18,6 +18,4 @@
 # You should have received a copy of the GNU General Public License
 # along with HYDEVA. If not, see <http://www.gnu.org/licenses/>.
 
-from .hydeva import evaluator, nse, nse_log, nse_sqrt, nse_c2m, kge, kge_log, kge_sqrt, kge_c2m, rmse, rmse_log, \
-    spearman_rank_corr, mare, pbias
-
+from .hydeva import evaluator, nse, nse_c2m, kge, kge_c2m, rmse, spearman_rank_corr, mare, pbias
