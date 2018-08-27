@@ -29,7 +29,7 @@ def evaluator(func, simulation_s, evaluation, axis=1, transform=None, epsilon=No
 
     # check that the evaluation data provided is a single series of data
     if evaluation.ndim == 1:
-        my_eval = evaluation
+        my_eval = evaluation[:]
     elif evaluation.ndim == 2:
         if (evaluation.shape[0] == 1) or (evaluation.shape[1] == 1):
             if evaluation.shape[1] > 1:
