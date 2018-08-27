@@ -48,44 +48,44 @@ def evaluator(func, simulation_s, evaluation, axis=1, transform=None, epsilon=No
         if not epsilon:
             # determine an epsilon value to avoid log of zero (following recommendation in Pushpalatha et al. (2012))
             epsilon = 0.01 * np.mean(my_eval)
-        my_eval, my_simu = np.log(my_eval + epsilon), np.log(simulation_s + epsilon)
+        my_eval, simulation_s = np.log(my_eval + epsilon), np.log(simulation_s + epsilon)
     elif transform == 'inv':  # inverse transformation
         if not epsilon:
             # determine an epsilon value to avoid zero divide (following recommendation in Pushpalatha et al. (2012))
             epsilon = 0.01 * np.mean(evaluation)
-        my_eval, my_simu = 1.0 / (my_eval + epsilon), 1.0 / (simulation_s + epsilon)
+        my_eval, simulation_s = 1.0 / (my_eval + epsilon), 1.0 / (simulation_s + epsilon)
     elif transform == 'sqrt':  # square root transformation
-        my_eval, my_simu = np.sqrt(my_eval), np.sqrt(simulation_s)
+        my_eval, simulation_s = np.sqrt(my_eval), np.sqrt(simulation_s)
     else:  # no transformation
-        my_eval, my_simu = my_eval, simulation_s
+        my_eval, simulation_s = my_eval, simulation_s
 
     # proceed according to the dimension of the simulation array (1D or 2D)
-    if my_simu.ndim == 1:
-        if my_simu.size == my_eval.size:
+    if simulation_s.ndim == 1:
+        if simulation_s.size == my_eval.size:
             # select subset of both series given the data availability in evaluation
-            my_simu = my_simu[~np.isnan(my_eval)]
+            my_simu = simulation_s[~np.isnan(my_eval)]
             my_eval = my_eval[~np.isnan(my_eval)]
             return func(my_simu, my_eval)
         else:
             raise Exception('Simulation and evaluation arrays must be the same length.')
-    elif my_simu.ndim == 2:
-        if my_simu.shape[axis] == my_eval.size:  # check if lengths match (with default/user-defined axis)
+    elif simulation_s.ndim == 2:
+        if simulation_s.shape[axis] == my_eval.size:  # check if lengths match (with default/user-defined axis)
             if axis == 1:
-                if my_simu.shape[0] > 1:
-                    my_simu = my_simu[:, ~np.isnan(my_eval)]
+                if simulation_s.shape[0] > 1:
+                    my_simu = simulation_s[:, ~np.isnan(my_eval)]
                     my_eval = my_eval[~np.isnan(my_eval)]
                     return np.apply_along_axis(func, axis, my_simu, my_eval)
                 else:
-                    my_simu = my_simu[0, :][~np.isnan(my_eval)]
+                    my_simu = simulation_s[0, :][~np.isnan(my_eval)]
                     my_eval = my_eval[~np.isnan(my_eval)]
                     return func(my_simu, my_eval)
             else:  # axis == 0
-                if my_simu.shape[1] > 1:
-                    my_simu = my_simu[~np.isnan(my_eval), :]
+                if simulation_s.shape[1] > 1:
+                    my_simu = simulation_s[~np.isnan(my_eval), :]
                     my_eval = my_eval[~np.isnan(my_eval)]
                     return np.apply_along_axis(func, axis, my_simu, my_eval)
                 else:
-                    my_simu = my_simu[:, 0][~np.isnan(my_eval)]
+                    my_simu = simulation_s[:, 0][~np.isnan(my_eval)]
                     my_eval = my_eval[~np.isnan(my_eval)]
                     return func(my_simu, my_eval)
         else:
