@@ -22,7 +22,7 @@ import numpy as np
 from scipy.stats import spearmanr
 
 
-def evaluator(func, simulation_s, evaluation, axis=1):
+def evaluator(func, simulation_s, evaluation, axis=1, transform=None, epsilon=None):
     assert isinstance(simulation_s, np.ndarray)
     assert isinstance(evaluation, np.ndarray)
     assert (axis == 0) or (axis == 1)
@@ -43,33 +43,49 @@ def evaluator(func, simulation_s, evaluation, axis=1):
     else:
         raise Exception('The evaluation array contains more than 2 dimensions.')
 
+    # transform the flow series if required
+    if transform == 'log':  # log transformation
+        if not epsilon:
+            # determine an epsilon value to avoid log of zero (following recommendation in Pushpalatha et al. (2012))
+            epsilon = 0.01 * np.mean(evaluation)
+        my_eval, my_simu = np.log(my_eval + epsilon), np.log(simulation_s + epsilon)
+    elif transform == 'inv':  # inverse transformation
+        if not epsilon:
+            # determine an epsilon value to avoid zero divide (following recommendation in Pushpalatha et al. (2012))
+            epsilon = 0.01 * np.mean(evaluation)
+        my_eval, my_simu = 1.0 / (my_eval + epsilon), 1.0 / (simulation_s + epsilon)
+    elif transform == 'sqrt':  # square root transformation
+        my_eval, my_simu = np.sqrt(my_eval), np.sqrt(simulation_s)
+    else:  # no transformation
+        my_eval, my_simu = my_eval, simulation_s
+
     # proceed according to the dimension of the simulation array (1D or 2D)
-    if simulation_s.ndim == 1:
-        if simulation_s.size == my_eval.size:
+    if my_simu.ndim == 1:
+        if my_simu.size == my_eval.size:
             # select subset of both series given the data availability in evaluation
-            my_simu = simulation_s[~np.isnan(my_eval)]
+            my_simu = my_simu[~np.isnan(my_eval)]
             my_eval = my_eval[~np.isnan(my_eval)]
             return func(my_simu, my_eval)
         else:
             raise Exception('Simulation and evaluation arrays must be the same length.')
-    elif simulation_s.ndim == 2:
-        if simulation_s.shape[axis] == my_eval.size:  # check if lengths match (with default/user-defined axis)
+    elif my_simu.ndim == 2:
+        if my_simu.shape[axis] == my_eval.size:  # check if lengths match (with default/user-defined axis)
             if axis == 1:
-                if simulation_s.shape[0] > 1:
-                    my_simu = simulation_s[:, ~np.isnan(my_eval)]
+                if my_simu.shape[0] > 1:
+                    my_simu = my_simu[:, ~np.isnan(my_eval)]
                     my_eval = my_eval[~np.isnan(my_eval)]
                     return np.apply_along_axis(func, axis, my_simu, my_eval)
                 else:
-                    my_simu = simulation_s[0, :][~np.isnan(my_eval)]
+                    my_simu = my_simu[0, :][~np.isnan(my_eval)]
                     my_eval = my_eval[~np.isnan(my_eval)]
                     return func(my_simu, my_eval)
             else:  # axis == 0
-                if simulation_s.shape[1] > 1:
-                    my_simu = simulation_s[~np.isnan(my_eval), :]
+                if my_simu.shape[1] > 1:
+                    my_simu = my_simu[~np.isnan(my_eval), :]
                     my_eval = my_eval[~np.isnan(my_eval)]
                     return np.apply_along_axis(func, axis, my_simu, my_eval)
                 else:
-                    my_simu = simulation_s[:, 0][~np.isnan(my_eval)]
+                    my_simu = my_simu[:, 0][~np.isnan(my_eval)]
                     my_eval = my_eval[~np.isnan(my_eval)]
                     return func(my_simu, my_eval)
         else:
@@ -84,30 +100,6 @@ def nse(simulation, evaluation):
                 np.sum((evaluation - np.mean(evaluation)) ** 2))
 
     return nse_
-
-
-def nse_log(simulation, evaluation, epsilon=None):
-    if not epsilon:
-        # determine an epsilon value to avoid log of zero (following recommendation in Pushpalatha et al. (2012))
-        epsilon = 0.01 * np.mean(evaluation)
-
-    # log transformation of flows
-    simulation_log, evaluation_log = np.log(simulation + epsilon), np.log(evaluation + epsilon)
-
-    # calculate Square Root Nash-Sutcliffe Efficiency
-    nse_log_ = nse(simulation_log, evaluation_log)
-
-    return nse_log_
-
-
-def nse_sqrt(simulation, evaluation):
-    # square root transformation of flows
-    simulation_sqrt, evaluation_sqrt = np.sqrt(simulation), np.sqrt(evaluation)
-
-    # calculate Square Root Nash-Sutcliffe Efficiency
-    nse_sqrt_ = nse(simulation_sqrt, evaluation_sqrt)
-
-    return nse_sqrt_
 
 
 def nse_c2m(simulation, evaluation):
@@ -131,30 +123,6 @@ def kge(simulation, evaluation):
     return kge_, cc, alpha, beta
 
 
-def kge_log(simulation, evaluation, epsilon=None):
-    if not epsilon:
-        # determine an epsilon value to avoid log of zero (following recommendation in Pushpalatha et al. (2012))
-        epsilon = 0.01 * np.mean(evaluation)
-
-    # log transformation of flows
-    simulation_log, evaluation_log = np.log(simulation + epsilon), np.log(evaluation + epsilon)
-
-    # calculate Kling-Gupta Efficiency, cc, alpha, beta
-    kge_log_, cc, alpha, beta = kge(simulation_log, evaluation_log)
-
-    return kge_log_, cc, alpha, beta
-
-
-def kge_sqrt(simulation, evaluation):
-    # square root transformation of flows
-    simulation_sqrt, observation_sqrt = np.sqrt(simulation), np.sqrt(evaluation)
-
-    # calculate Kling-Gupta Efficiency, cc, alpha, beta
-    kge_sqrt_, cc, alpha, beta = kge(simulation_sqrt, observation_sqrt)
-
-    return kge_sqrt_, cc, alpha, beta
-
-
 def kge_c2m(simulation, evaluation):
     # calculate bounded formulation of KGE following C2M transformation after Mathevet et al. (2006)
     kge_ = kge(simulation, evaluation)[0]
@@ -168,20 +136,6 @@ def rmse(simulation, evaluation):
     rmse_ = np.sqrt(np.mean((evaluation - simulation) ** 2))
 
     return rmse_
-
-
-def rmse_log(simulation, evaluation, epsilon=None):
-    if not epsilon:
-        # determine an epsilon value to avoid log of zero (following recommendation in Pushpalatha et al. (2012))
-        epsilon = 0.01 * np.mean(evaluation)
-
-    # log transformation of flows
-    simulation_log, evaluation_log = np.log(simulation + epsilon), np.log(evaluation + epsilon)
-
-    # calculate Square Root Nash-Sutcliffe Efficiency
-    rmse_log_ = rmse(simulation_log, evaluation_log)
-
-    return rmse_log_
 
 
 def spearman_rank_corr(simulation, evaluation):
