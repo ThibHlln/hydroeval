@@ -112,15 +112,15 @@ def nse_c2m(simulation, evaluation):
 
 def kge(simulation, evaluation):
     # correlation coefficient (error in dynamics)
-    cc = np.corrcoef(evaluation, simulation)[0, 1]
+    r = np.corrcoef(evaluation, simulation)[0, 1]
     # alpha (error in variability)
     alpha = np.std(simulation) / np.std(evaluation)
     # central tendency beta (error in volume)
     beta = np.sum(simulation) / np.sum(evaluation)
-    # calculate Kling-Gupta Efficiency
-    kge_ = 1 - np.sqrt((cc - 1) ** 2 + (alpha - 1) ** 2 + (beta - 1) ** 2)
+    # calculate the Kling-Gupta Efficiency KGE
+    kge_ = 1 - np.sqrt((r - 1) ** 2 + (alpha - 1) ** 2 + (beta - 1) ** 2)
 
-    return kge_, cc, alpha, beta
+    return kge_, r, alpha, beta
 
 
 def kge_c2m(simulation, evaluation):
@@ -129,6 +129,27 @@ def kge_c2m(simulation, evaluation):
     kge_c2m_ = kge_ / (2 - kge_)
 
     return kge_c2m_
+
+
+def kgeprime(simulation, evaluation):
+    # correlation coefficient (error in dynamics)
+    r = np.corrcoef(evaluation, simulation)[0, 1]
+    # gamma (error in variability)
+    gamma = (np.std(simulation) / np.mean(simulation)) / (np.std(evaluation) / np.mean(evaluation))
+    # central tendency beta (error in volume)
+    beta = np.sum(simulation) / np.sum(evaluation)
+    # calculate the modified Kling-Gupta Efficiency KGE'
+    kgeprime_ = 1 - np.sqrt((r - 1) ** 2 + (gamma - 1) ** 2 + (beta - 1) ** 2)
+
+    return kgeprime_, r, gamma, beta
+
+
+def kgeprime_c2m(simulation, evaluation):
+    # calculate bounded formulation of KGE' following C2M transformation after Mathevet et al. (2006)
+    kgeprime_ = kgeprime(simulation, evaluation)[0]
+    kgeprime_c2m_ = kgeprime_ / (2 - kgeprime_)
+
+    return kgeprime_c2m_
 
 
 def rmse(simulation, evaluation):
