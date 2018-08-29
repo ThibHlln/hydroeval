@@ -19,7 +19,6 @@
 # along with HYDEVA. If not, see <http://www.gnu.org/licenses/>.
 
 import numpy as np
-from scipy.stats import spearmanr
 
 
 def evaluator(func, simulation_s, evaluation, axis=1, transform=None, epsilon=None):
@@ -29,74 +28,57 @@ def evaluator(func, simulation_s, evaluation, axis=1, transform=None, epsilon=No
 
     # check that the evaluation data provided is a single series of data
     if evaluation.ndim == 1:
-        my_eval = evaluation[:]
+        my_eval = np.reshape(evaluation, (1, evaluation.size))
     elif evaluation.ndim == 2:
-        if (evaluation.shape[0] == 1) or (evaluation.shape[1] == 1):
-            if evaluation.shape[1] > 1:
-                my_eval = evaluation[0, :]
-            elif evaluation.shape[0] > 1:
-                my_eval = evaluation[:, 0]
-            else:
-                raise Exception('The evaluation 2D array does not contain enough data.')
+        if axis == 0:
+            my_eval = evaluation.T
         else:
-            raise Exception('The evaluation 2D array does not feature a flat dimension.')
+            my_eval = evaluation
     else:
         raise Exception('The evaluation array contains more than 2 dimensions.')
+    if not my_eval.shape[0] == 1:
+        raise Exception('The evaluation array does not contain a flat dimension.')
+
+    # check the dimensions of the simulation data provided
+    if simulation_s.ndim == 1:
+        my_simu = np.reshape(simulation_s, (1, simulation_s.size))
+    elif simulation_s.ndim == 2:
+        if axis == 0:
+            my_simu = simulation_s.T
+        else:
+            my_simu = simulation_s
+    else:
+        raise Exception('The simulation array contains more than 2 dimensions.')
+
+    # check that the two arrays have compatible lengths
+    if not my_simu.shape[1] == my_eval.shape[1]:
+        raise Exception('The simulation and evaluation arrays must have compatible dimensions.')
+
+    # generate a subset of simulation and evaluation series where evaluation data is available
+    my_simu = my_simu[:, ~np.isnan(my_eval[0, :])]
+    my_eval = my_eval[:, ~np.isnan(my_eval[0, :])]
 
     # transform the flow series if required
     if transform == 'log':  # log transformation
         if not epsilon:
             # determine an epsilon value to avoid log of zero (following recommendation in Pushpalatha et al. (2012))
-            epsilon = 0.01 * np.nanmean(my_eval)
-        my_eval, my_simu = np.log(my_eval + epsilon), np.log(simulation_s + epsilon)
+            epsilon = 0.01 * np.mean(my_eval)
+        my_eval, my_simu = np.log(my_eval + epsilon), np.log(my_simu + epsilon)
     elif transform == 'inv':  # inverse transformation
         if not epsilon:
             # determine an epsilon value to avoid zero divide (following recommendation in Pushpalatha et al. (2012))
-            epsilon = 0.01 * np.nanmean(evaluation)
-        my_eval, my_simu = 1.0 / (my_eval + epsilon), 1.0 / (simulation_s + epsilon)
+            epsilon = 0.01 * np.mean(evaluation)
+        my_eval, my_simu = 1.0 / (my_eval + epsilon), 1.0 / (my_simu + epsilon)
     elif transform == 'sqrt':  # square root transformation
-        my_eval, my_simu = np.sqrt(my_eval), np.sqrt(simulation_s)
-    else:  # no transformation
-        my_eval, my_simu = my_eval, simulation_s
+        my_eval, my_simu = np.sqrt(my_eval), np.sqrt(my_simu)
 
-    # proceed according to the dimension of the simulation array (1D or 2D)
-    if my_simu.ndim == 1:
-        if my_simu.size == my_eval.size:
-            # select subset of both series given the data availability in evaluation
-            my_simu = my_simu[~np.isnan(my_eval)]
-            my_eval = my_eval[~np.isnan(my_eval)]
-            return func(my_simu, my_eval)
-        else:
-            raise Exception('Simulation and evaluation arrays must be the same length.')
-    elif my_simu.ndim == 2:
-        if my_simu.shape[axis] == my_eval.size:  # check if lengths match (with default/user-defined axis)
-            if axis == 1:
-                if my_simu.shape[0] > 1:
-                    my_simu = my_simu[:, ~np.isnan(my_eval)]
-                    my_eval = my_eval[~np.isnan(my_eval)]
-                    return np.apply_along_axis(func, axis, my_simu, my_eval)
-                else:
-                    my_simu = my_simu[0, :][~np.isnan(my_eval)]
-                    my_eval = my_eval[~np.isnan(my_eval)]
-                    return func(my_simu, my_eval)
-            else:  # axis == 0
-                if my_simu.shape[1] > 1:
-                    my_simu = my_simu[~np.isnan(my_eval), :]
-                    my_eval = my_eval[~np.isnan(my_eval)]
-                    return np.apply_along_axis(func, axis, my_simu, my_eval)
-                else:
-                    my_simu = my_simu[:, 0][~np.isnan(my_eval)]
-                    my_eval = my_eval[~np.isnan(my_eval)]
-                    return func(my_simu, my_eval)
-        else:
-            raise Exception('Simulation and evaluation arrays must be the same length.')
-    else:
-        raise Exception('The simulation array contains more than 2 dimensions.')
+    # calculate the requested function
+    return func(my_simu, my_eval)
 
 
-def nse(simulation, evaluation):
+def nse(simulation_s, evaluation):
     # calculate Nash-Sutcliffe Efficiency
-    nse_ = 1 - (np.sum((evaluation - simulation) ** 2) /
+    nse_ = 1 - (np.sum((evaluation - simulation_s) ** 2, axis=1, dtype=np.float64) /
                 np.sum((evaluation - np.mean(evaluation)) ** 2))
 
     return nse_
@@ -110,17 +92,24 @@ def nse_c2m(simulation, evaluation):
     return nse_c2m_
 
 
-def kge(simulation, evaluation):
-    # correlation coefficient (error in dynamics)
-    r = np.corrcoef(evaluation, simulation)[0, 1]
-    # alpha (error in variability)
-    alpha = np.std(simulation) / np.std(evaluation)
-    # central tendency beta (error in volume)
-    beta = np.sum(simulation) / np.sum(evaluation)
+def kge(simulation_s, evaluation):
+    # calculate correlation coefficient
+    sim_mean = np.reshape(np.mean(simulation_s, axis=1), (simulation_s.shape[0], 1))
+    obs_mean = np.mean(evaluation)
+    r = np.sum((simulation_s - sim_mean) * (evaluation - obs_mean), axis=1, dtype=np.float64) / \
+        np.sqrt(np.sum((simulation_s - sim_mean) ** 2, axis=1, dtype=np.float64) *
+                np.sum((evaluation - obs_mean) ** 2, dtype=np.float64))
+    # calculate alpha
+    alpha = np.reshape(np.std(simulation_s, axis=1), (simulation_s.shape[0], 1)) / \
+        np.std(evaluation)
+    # calculate beta
+    beta = np.reshape(np.sum(simulation_s, axis=1, dtype=np.float64), (simulation_s.shape[0], 1)) / \
+        np.sum(evaluation, dtype=np.float64)
     # calculate the Kling-Gupta Efficiency KGE
-    kge_ = 1 - np.sqrt((r - 1) ** 2 + (alpha - 1) ** 2 + (beta - 1) ** 2)
+    kge_ = 1 - np.sqrt(np.sum((np.reshape(r, (simulation_s.shape[0], 1)) - 1) ** 2 +
+                              (alpha - 1) ** 2 + (beta - 1) ** 2, axis=1))
 
-    return kge_, r, alpha, beta
+    return kge_, r, alpha[:, 0], beta[:, 0]
 
 
 def kge_c2m(simulation, evaluation):
@@ -131,17 +120,24 @@ def kge_c2m(simulation, evaluation):
     return kge_c2m_
 
 
-def kgeprime(simulation, evaluation):
-    # correlation coefficient (error in dynamics)
-    r = np.corrcoef(evaluation, simulation)[0, 1]
-    # gamma (error in variability)
-    gamma = (np.std(simulation) / np.mean(simulation)) / (np.std(evaluation) / np.mean(evaluation))
-    # central tendency beta (error in volume)
-    beta = np.sum(simulation) / np.sum(evaluation)
+def kgeprime(simulation_s, evaluation):
+    # calculate correlation coefficient
+    sim_mean = np.reshape(np.mean(simulation_s, axis=1), (simulation_s.shape[0], 1))
+    obs_mean = np.mean(evaluation)
+    r = np.sum((simulation_s - sim_mean) * (evaluation - obs_mean), axis=1, dtype=np.float64) / \
+        np.sqrt(np.sum((simulation_s - sim_mean) ** 2, axis=1, dtype=np.float64) *
+                np.sum((evaluation - obs_mean) ** 2, dtype=np.float64))
+    # calculate gamma
+    gamma = (np.reshape(np.std(simulation_s, axis=1, dtype=np.float64), (simulation_s.shape[0], 1)) / sim_mean) / \
+        (np.std(evaluation, dtype=np.float64) / obs_mean)
+    # calculate beta
+    beta = np.reshape(np.sum(simulation_s, axis=1, dtype=np.float64), (simulation_s.shape[0], 1)) / \
+        np.sum(evaluation, dtype=np.float64)
     # calculate the modified Kling-Gupta Efficiency KGE'
-    kgeprime_ = 1 - np.sqrt((r - 1) ** 2 + (gamma - 1) ** 2 + (beta - 1) ** 2)
+    kge_ = 1 - np.sqrt(np.sum((np.reshape(r, (simulation_s.shape[0], 1)) - 1) ** 2 +
+                              (gamma - 1) ** 2 + (beta - 1) ** 2, axis=1))
 
-    return kgeprime_, r, gamma, beta
+    return kge_, r, gamma[:, 0], beta[:, 0]
 
 
 def kgeprime_c2m(simulation, evaluation):
@@ -154,25 +150,20 @@ def kgeprime_c2m(simulation, evaluation):
 
 def rmse(simulation, evaluation):
     # calculate root mean square error
-    rmse_ = np.sqrt(np.mean((evaluation - simulation) ** 2))
+    rmse_ = np.sqrt(np.mean((evaluation - simulation) ** 2, axis=1, dtype=np.float64))
 
     return rmse_
 
 
-def spearman_rank_corr(simulation, evaluation):
-    # return correlation only (rho)
-    return spearmanr(simulation, evaluation)[0]
-
-
 def mare(simulation, evaluation):
     # calculate mean absolute relative error (MARE)
-    mare_ = np.sum(np.abs(evaluation - simulation)) / np.sum(evaluation)
+    mare_ = np.sum(np.abs(evaluation - simulation), axis=1, dtype=np.float64) / np.sum(evaluation)
 
     return mare_
 
 
 def pbias(simulation, evaluation):
     # calculate percent bias
-    pbias_ = 100 * np.sum(evaluation - simulation) / np.sum(evaluation)
+    pbias_ = 100 * np.sum(evaluation - simulation, axis=1, dtype=np.float64) / np.sum(evaluation)
 
     return pbias_

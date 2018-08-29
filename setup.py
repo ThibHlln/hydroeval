@@ -44,7 +44,6 @@ setup(
     packages=['hydeva'],
 
     install_requires=[
-        'numpy',
-        'scipy'
+        'numpy'
     ],
 )
