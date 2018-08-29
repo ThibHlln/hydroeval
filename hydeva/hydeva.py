@@ -109,7 +109,7 @@ def kge(simulation_s, evaluation):
     kge_ = 1 - np.sqrt(np.sum((np.reshape(r, (simulation_s.shape[0], 1)) - 1) ** 2 +
                               (alpha - 1) ** 2 + (beta - 1) ** 2, axis=1))
 
-    return kge_, r, alpha[:, 0], beta[:, 0]
+    return np.vstack((kge_, r, alpha[:, 0], beta[:, 0])).T
 
 
 def kge_c2m(simulation, evaluation):
@@ -137,7 +137,7 @@ def kgeprime(simulation_s, evaluation):
     kge_ = 1 - np.sqrt(np.sum((np.reshape(r, (simulation_s.shape[0], 1)) - 1) ** 2 +
                               (gamma - 1) ** 2 + (beta - 1) ** 2, axis=1))
 
-    return kge_, r, gamma[:, 0], beta[:, 0]
+    return np.hstack((kge_, r, gamma[:, 0], beta[:, 0])).T
 
 
 def kgeprime_c2m(simulation, evaluation):
