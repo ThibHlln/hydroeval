@@ -84,9 +84,9 @@ def nse(simulation_s, evaluation):
     return nse_
 
 
-def nse_c2m(simulation, evaluation):
+def nse_c2m(simulation_s, evaluation):
     # calculate bounded formulation of NSE following C2M transformation after Mathevet et al. (2006)
-    nse_ = nse(simulation, evaluation)
+    nse_ = nse(simulation_s, evaluation)
     nse_c2m_ = nse_ / (2 - nse_)
 
     return nse_c2m_
@@ -112,9 +112,9 @@ def kge(simulation_s, evaluation):
     return np.vstack((kge_, r, alpha[:, 0], beta[:, 0])).T
 
 
-def kge_c2m(simulation, evaluation):
+def kge_c2m(simulation_s, evaluation):
     # calculate bounded formulation of KGE following C2M transformation after Mathevet et al. (2006)
-    kge_ = kge(simulation, evaluation)[0]
+    kge_ = kge(simulation_s, evaluation)[0]
     kge_c2m_ = kge_ / (2 - kge_)
 
     return kge_c2m_
@@ -140,30 +140,30 @@ def kgeprime(simulation_s, evaluation):
     return np.vstack((kge_, r, gamma[:, 0], beta[:, 0])).T
 
 
-def kgeprime_c2m(simulation, evaluation):
+def kgeprime_c2m(simulation_s, evaluation):
     # calculate bounded formulation of KGE' following C2M transformation after Mathevet et al. (2006)
-    kgeprime_ = kgeprime(simulation, evaluation)[0]
+    kgeprime_ = kgeprime(simulation_s, evaluation)[0]
     kgeprime_c2m_ = kgeprime_ / (2 - kgeprime_)
 
     return kgeprime_c2m_
 
 
-def rmse(simulation, evaluation):
+def rmse(simulation_s, evaluation):
     # calculate root mean square error
-    rmse_ = np.sqrt(np.mean((evaluation - simulation) ** 2, axis=1, dtype=np.float64))
+    rmse_ = np.sqrt(np.mean((evaluation - simulation_s) ** 2, axis=1, dtype=np.float64))
 
     return rmse_
 
 
-def mare(simulation, evaluation):
+def mare(simulation_s, evaluation):
     # calculate mean absolute relative error (MARE)
-    mare_ = np.sum(np.abs(evaluation - simulation), axis=1, dtype=np.float64) / np.sum(evaluation)
+    mare_ = np.sum(np.abs(evaluation - simulation_s), axis=1, dtype=np.float64) / np.sum(evaluation)
 
     return mare_
 
 
-def pbias(simulation, evaluation):
+def pbias(simulation_s, evaluation):
     # calculate percent bias
-    pbias_ = 100 * np.sum(evaluation - simulation, axis=1, dtype=np.float64) / np.sum(evaluation)
+    pbias_ = 100 * np.sum(evaluation - simulation_s, axis=1, dtype=np.float64) / np.sum(evaluation)
 
     return pbias_
