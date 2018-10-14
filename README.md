@@ -1,6 +1,6 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-# EFlowCalc - An open-source calculator of ecological stream flow characteristics in Python
+# HydroEval - An open-source evaluator for stream flow time series in Python
 
 HydroEval is an open-source evaluator of stream flow time series in Python. It is licensed under GNU GPL-3.0 (see [licence file](https://github.com/ThibHlln/eflowcalc/blob/master/LICENCE.md) provided). HydroEval is designed to calculate all objective functions in a vectorised way which makes all computations very efficient using [numpy](https://github.com/numpy/numpy) (and hence C code under the hood).
 
