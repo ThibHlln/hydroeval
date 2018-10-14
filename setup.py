@@ -4,13 +4,13 @@ from setuptools import setup
 
 
 setup(
-    name='hydeva',
+    name='hydroeval',
 
     version='0.0.1',
 
-    description='HYDEVA: For HYDrological EVAluations',
+    description='HydroEval: An Evaluator for Hydrological Time Series',
 
-    url='https://github.com/ThibHlln/hydeva',
+    url='https://github.com/ThibHlln/hydroeval',
 
     author='Thibault Hallouin',
     author_email='thibault.hallouin@ucdconnect.ie',
@@ -41,7 +41,7 @@ setup(
         'Programming Language :: Python :: Implementation :: CPython'
     ],
 
-    packages=['hydeva'],
+    packages=['hydroeval'],
 
     install_requires=[
         'numpy'
