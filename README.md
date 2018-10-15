@@ -13,13 +13,11 @@ The simplest way to install HydroEval is to use pip and a link to the GitHub rep
 Alternatively, you can download the source code (*i.e.* the GitHub repository) and, from the downloaded directory itself, run the command:
 
     python setup.py install
-    
 
 ## How to Use
 
 A tutorial in the form of a [Jupyter notebook](https://github.com/ThibHlln/hydroeval/blob/master/examples/api_usage_example.ipynb) is available to get started with the usage of HydroEval's API. The input files required for the tutorial are all provided in the `examples/` folder.
 
-    
 ## Objective Functions Available
 
 The objective functions currently available in HydroEval that evaluate the fit between observed and simulated stream flow timeseries are as follows:
