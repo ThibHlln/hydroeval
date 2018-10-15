@@ -16,7 +16,7 @@ Alternatively, you can download the source code (*i.e.* the GitHub repository) a
 
 ## Dependencies
 
-HydroEval requires the popular Python packages `numpy` and `scipy` to be installed on the Python implementation where `hydroeval` is installed.
+HydroEval requires the popular Python package `numpy` to be installed on the Python implementation where `hydroeval` is installed.
 
 ## Version History
 
