@@ -16,7 +16,7 @@ Alternatively, you can download the source code (*i.e.* the GitHub repository) a
     
 ## Objective Functions
 
-The objective functions that evaluate the similarity between observed and simulated stream flow timeseries currently available in HydroEval is as follows:
+The objective functions currently available in HydroEval that evaluate the fit between observed and simulated stream flow timeseries are as follows:
 * [Nash-Sutcliffe Efficiency](https://doi.org/10.1016/0022-1694(70)90255-6) (`nse`)
 * [Original Kling-Gupta Efficiency](https://doi.org/10.1016/j.jhydrol.2009.08.003) (`kge`) and its three components (r, \alpha, \beta)
 * [Modified Kling-Gupta Efficiency](https://doi.org/10.1016/j.jhydrol.2012.01.011) (`kgeprime`) and its three components (r, \gamma, \beta)
