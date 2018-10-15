@@ -67,7 +67,7 @@ def evaluator(func, simulation_s, evaluation, axis=1, transform=None, epsilon=No
     elif transform == 'inv':  # inverse transformation
         if not epsilon:
             # determine an epsilon value to avoid zero divide (following recommendation in Pushpalatha et al. (2012))
-            epsilon = 0.01 * np.mean(evaluation)
+            epsilon = 0.01 * np.mean(my_eval)
         my_eval, my_simu = 1.0 / (my_eval + epsilon), 1.0 / (my_simu + epsilon)
     elif transform == 'sqrt':  # square root transformation
         my_eval, my_simu = np.sqrt(my_eval), np.sqrt(my_simu)
