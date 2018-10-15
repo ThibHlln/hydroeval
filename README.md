@@ -2,7 +2,7 @@
 
 # HydroEval - An open-source evaluator for stream flow time series in Python
 
-HydroEval is an open-source evaluator of stream flow time series in Python. It is licensed under GNU GPL-3.0 (see [licence file](https://github.com/ThibHlln/eflowcalc/blob/master/LICENCE.md) provided). HydroEval is designed to calculate all objective functions in a vectorised way which makes all computations very efficient using [numpy](https://github.com/numpy/numpy) (and hence C code under the hood).
+HydroEval is an open-source evaluator of stream flow time series in Python. It is licensed under GNU GPL-3.0 (see [licence file](https://github.com/ThibHlln/hydroeval/blob/master/LICENCE.md) provided). HydroEval is designed to calculate all objective functions in a vectorised way which makes all computations very efficient using [numpy](https://github.com/numpy/numpy) (and hence C code under the hood).
 
 ## How to Install
 
