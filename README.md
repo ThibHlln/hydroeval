@@ -30,7 +30,7 @@ Moreover, KGE and NSE can be calculated in a bounded version following [Mathevet
 * Bounded Original Kling-Gupta Efficiency (`kge_c2m`)
 * Bounded Modified Kling-Gupta Efficiency (`kgeprime_c2m`)
 
-Finally, any of the objective functions can take an optimal argument `tranform`. This argument allows to apply a transformation on the observed and simulated stream flow timeseries prior the calculation of the objective function. The possible transformations are as follows:
+Finally, any of the objective functions can take an optimal argument `transform`. This argument allows to apply a transformation on the observed and simulated stream flow timeseries prior the calculation of the objective function. The possible transformations are as follows:
 * Inverted flows (using `transform='inv'`)
 * Square Root-transformed flows (using `transform='sqrt'`)
 * Natural Logarithm-transformed flows (using `transform='log'`)
