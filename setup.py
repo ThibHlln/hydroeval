@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
 setup(
     name='hydroeval',
 
-    version='0.0.1',
+    version='0.0.1-1',
 
     description='HydroEval: An Evaluator for Stream Flow Time Series',
     long_description=long_desc,
