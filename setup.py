@@ -8,7 +8,7 @@ setup(
 
     version='0.0.1',
 
-    description='HydroEval: An Evaluator for Hydrological Time Series',
+    description='HydroEval: An Evaluator for Stream Flow Time Series',
 
     url='https://github.com/ThibHlln/hydroeval',
 

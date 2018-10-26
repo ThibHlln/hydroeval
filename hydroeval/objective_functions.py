@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# This file is part of HydroEval: An Evaluator for Hydrological Time Series
+# This file is part of HydroEval: An Evaluator for Stream Flow Time Series
 # Copyright (C) 2018  Thibault Hallouin (1)
 #
 # (1) Dooge Centre for Water Resources Research, University College Dublin, Ireland
@@ -54,7 +54,7 @@ def kge(simulation_s, evaluation):
     return np.vstack((kge_, r, alpha[:, 0], beta[:, 0])).T
 
 
-# Modified kling-Gupta Efficiency (kling et al. 2012 - https://doi.org/10.1016/j.jhydrol.2012.01.011)
+# Modified Kling-Gupta Efficiency (Kling et al. 2012 - https://doi.org/10.1016/j.jhydrol.2012.01.011)
 def kgeprime(simulation_s, evaluation):
     # calculate correlation coefficient
     sim_mean = np.reshape(np.mean(simulation_s, axis=1), (simulation_s.shape[0], 1))

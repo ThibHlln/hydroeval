@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# This file is part of HydroEval: An Evaluator for Hydrological Time Series
+# This file is part of HydroEval: An Evaluator for Stream Flow Time Series
 # Copyright (C) 2018  Thibault Hallouin (1)
 #
 # (1) Dooge Centre for Water Resources Research, University College Dublin, Ireland
