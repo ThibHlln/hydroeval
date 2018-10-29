@@ -18,7 +18,5 @@
 # You should have received a copy of the GNU General Public License
 # along with HydroEval. If not, see <http://www.gnu.org/licenses/>.
 
-from .hydroeval import evaluator
 
-from .objective_functions import nse, nse_c2m, kge, kge_c2m, kgeprime, kgeprime_c2m, rmse, mare, pbias
-from .version import __version__
+__version__ = '0.0.1-1'

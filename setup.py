@@ -3,13 +3,16 @@
 from setuptools import setup
 
 
-with open("README.md", "r") as fh:
-    long_desc = fh.read()
+with open("README.md", "r") as fd:
+    long_desc = fd.read()
+
+with open('hydroeval/version.py') as fv:
+    exec(fv.read())
 
 setup(
     name='hydroeval',
 
-    version='0.0.1-1',
+    version=__version__,
 
     description='HydroEval: An Evaluator for Stream Flow Time Series',
     long_description=long_desc,
