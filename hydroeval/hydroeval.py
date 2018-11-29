@@ -55,8 +55,8 @@ def evaluator(func, simulation_s, evaluation, axis=0, transform=None, epsilon=No
         raise Exception('The simulation and evaluation arrays must have compatible dimensions.')
 
     # generate a subset of simulation and evaluation series where evaluation data is available
-    my_simu = my_simu[:, ~np.isnan(my_eval[:, 0])]
-    my_eval = my_eval[:, ~np.isnan(my_eval[:, 0])]
+    my_simu = my_simu[~np.isnan(my_eval[:, 0]), :]
+    my_eval = my_eval[~np.isnan(my_eval[:, 0]), :]
 
     # transform the flow series if required
     if transform == 'log':  # log transformation
