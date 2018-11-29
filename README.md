@@ -50,6 +50,10 @@ HydroEval requires the popular Python package `numpy` to be installed on the Pyt
 
 ## Version History
 
+* 0.0.2 [29 Nov 2018]: General improvements
+    * Re-defines axis=0 as default array orientation
+    * Adds non-parametric version of KGE
+    * Corrects mistake in bounded original and modified KGE
 * 0.0.1 [26 Oct 2018]: First version of HydroEval
 
 ## Acknowledgment
