@@ -70,6 +70,27 @@ def kgeprime(simulation_s, evaluation):
     return np.vstack((kgeprime_, r, gamma, beta))
 
 
+# Non-Parametric Kling-Gupta Efficiency (Pool et al. 2018 - https://doi.org/10.1080/02626667.2018.1552002)
+def kgenp(simulation_s, evaluation):
+    # calculate error in timing and dynamics r (Spearman's correlation coefficient)
+    sim_rank = np.argsort(np.argsort(simulation_s, axis=0), axis=0)
+    obs_rank = np.argsort(np.argsort(evaluation, axis=0), axis=0)
+    r = np.sum((obs_rank - np.mean(obs_rank, axis=0, dtype=np.float64)) *
+               (sim_rank - np.mean(sim_rank, axis=0, dtype=np.float64)), axis=0) / \
+        np.sqrt(np.sum((obs_rank - np.mean(obs_rank, axis=0, dtype=np.float64)) ** 2, axis=0) *
+                (np.sum((sim_rank - np.mean(sim_rank, axis=0, dtype=np.float64)) ** 2, axis=0)))
+    # calculate error in timing and dynamics alpha (flow duration curve)
+    sim_fdc = np.sort(simulation_s / (simulation_s.shape[0] * np.mean(simulation_s, axis=0, dtype=np.float64)), axis=0)
+    obs_fdc = np.sort(evaluation / (evaluation.shape[0] * np.mean(evaluation, axis=0, dtype=np.float64)), axis=0)
+    alpha = 1 - 0.5 * np.sum(np.abs(sim_fdc - obs_fdc), axis=0)
+    # calculate error in volume beta (bias of mean discharge)
+    beta = np.mean(simulation_s, axis=0) / np.mean(evaluation, axis=0, dtype=np.float64)
+    # calculate the non-parametric Kling-Gupta Efficiency KGEnp
+    kgenp_ = 1 - np.sqrt((r - 1) ** 2 + (alpha - 1) ** 2 + (beta - 1) ** 2)
+
+    return np.vstack((kgenp_, r, alpha, beta))
+
+
 # Root Mean Square Error
 def rmse(simulation_s, evaluation):
     rmse_ = np.sqrt(np.mean((evaluation - simulation_s) ** 2, axis=0, dtype=np.float64))
@@ -118,3 +139,11 @@ def kgeprime_c2m(simulation_s, evaluation):
     kgeprime_c2m_ = kgeprime_ / (2 - kgeprime_)
 
     return kgeprime_c2m_
+
+
+# Bounded Version of the Modified Kling-Gupta Efficiency
+def kgenp_c2m(simulation_s, evaluation):
+    kgenp_ = kgenp(simulation_s, evaluation)[0, :]
+    kgenp_c2m_ = kgenp_ / (2 - kgenp_)
+
+    return kgenp_c2m_
