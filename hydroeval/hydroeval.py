@@ -72,5 +72,8 @@ def evaluator(func, simulation_s, evaluation, axis=0, transform=None, epsilon=No
     elif transform == 'sqrt':  # square root transformation
         my_eval, my_simu = np.sqrt(my_eval), np.sqrt(my_simu)
 
-    # calculate the requested function
-    return func(my_simu, my_eval)
+    # calculate the requested function and return in the same array orientation
+    if axis == 0:
+        return func(my_simu, my_eval)
+    else:
+        return func(my_simu, my_eval).T
