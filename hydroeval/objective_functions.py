@@ -27,71 +27,66 @@ import numpy as np
 
 # Nash-Sutcliffe Efficiency (Nash and Sutcliffe 1970 - https://doi.org/10.1016/0022-1694(70)90255-6)
 def nse(simulation_s, evaluation):
-    nse_ = 1 - (np.sum((evaluation - simulation_s) ** 2, axis=1, dtype=np.float64) /
-                np.sum((evaluation - np.mean(evaluation)) ** 2))
+    nse_ = 1 - (np.sum((evaluation - simulation_s) ** 2, axis=0, dtype=np.float64) /
+                np.sum((evaluation - np.mean(evaluation)) ** 2, dtype=np.float64))
 
     return nse_
 
 
 # Original Kling-Gupta Efficiency (Gupta et al. 2009 - https://doi.org/10.1016/j.jhydrol.2009.08.003)
 def kge(simulation_s, evaluation):
-    # calculate correlation coefficient
-    sim_mean = np.reshape(np.mean(simulation_s, axis=1), (simulation_s.shape[0], 1))
-    obs_mean = np.mean(evaluation)
-    r = np.sum((simulation_s - sim_mean) * (evaluation - obs_mean), axis=1, dtype=np.float64) / \
-        np.sqrt(np.sum((simulation_s - sim_mean) ** 2, axis=1, dtype=np.float64) *
+    # calculate error in timing and dynamics r (Pearson's correlation coefficient)
+    sim_mean = np.mean(simulation_s, axis=0, dtype=np.float64)
+    obs_mean = np.mean(evaluation, dtype=np.float64)
+    r = np.sum((simulation_s - sim_mean) * (evaluation - obs_mean), axis=0, dtype=np.float64) / \
+        np.sqrt(np.sum((simulation_s - sim_mean) ** 2, axis=0, dtype=np.float64) *
                 np.sum((evaluation - obs_mean) ** 2, dtype=np.float64))
-    # calculate alpha
-    alpha = np.reshape(np.std(simulation_s, axis=1), (simulation_s.shape[0], 1)) / \
-        np.std(evaluation)
-    # calculate beta
-    beta = np.reshape(np.sum(simulation_s, axis=1, dtype=np.float64), (simulation_s.shape[0], 1)) / \
-        np.sum(evaluation, dtype=np.float64)
+    # calculate error in spread of flow alpha
+    alpha = np.std(simulation_s, axis=0) / np.std(evaluation, dtype=np.float64)
+    # calculate error in volume beta (bias of mean discharge)
+    beta = np.sum(simulation_s, axis=0, dtype=np.float64) / np.sum(evaluation, dtype=np.float64)
     # calculate the Kling-Gupta Efficiency KGE
-    kge_ = 1 - np.sqrt(np.sum((np.reshape(r, (simulation_s.shape[0], 1)) - 1) ** 2 +
-                              (alpha - 1) ** 2 + (beta - 1) ** 2, axis=1))
+    kge_ = 1 - np.sqrt((r - 1) ** 2 + (alpha - 1) ** 2 + (beta - 1) ** 2)
 
-    return np.vstack((kge_, r, alpha[:, 0], beta[:, 0])).T
+    return np.vstack((kge_, r, alpha, beta))
 
 
 # Modified Kling-Gupta Efficiency (Kling et al. 2012 - https://doi.org/10.1016/j.jhydrol.2012.01.011)
 def kgeprime(simulation_s, evaluation):
-    # calculate correlation coefficient
-    sim_mean = np.reshape(np.mean(simulation_s, axis=1), (simulation_s.shape[0], 1))
-    obs_mean = np.mean(evaluation)
-    r = np.sum((simulation_s - sim_mean) * (evaluation - obs_mean), axis=1, dtype=np.float64) / \
-        np.sqrt(np.sum((simulation_s - sim_mean) ** 2, axis=1, dtype=np.float64) *
+    # calculate error in timing and dynamics r (Pearson's correlation coefficient)
+    sim_mean = np.mean(simulation_s, axis=0, dtype=np.float64)
+    obs_mean = np.mean(evaluation, dtype=np.float64)
+    r = np.sum((simulation_s - sim_mean) * (evaluation - obs_mean), axis=0, dtype=np.float64) / \
+        np.sqrt(np.sum((simulation_s - sim_mean) ** 2, axis=0, dtype=np.float64) *
                 np.sum((evaluation - obs_mean) ** 2, dtype=np.float64))
-    # calculate gamma
-    gamma = (np.reshape(np.std(simulation_s, axis=1, dtype=np.float64), (simulation_s.shape[0], 1)) / sim_mean) / \
+    # calculate error in spread of flow gamma (avoiding cross correlation with bias by dividing by the mean)
+    gamma = (np.std(simulation_s, axis=0, dtype=np.float64) / sim_mean) / \
         (np.std(evaluation, dtype=np.float64) / obs_mean)
-    # calculate beta
-    beta = np.reshape(np.sum(simulation_s, axis=1, dtype=np.float64), (simulation_s.shape[0], 1)) / \
-        np.sum(evaluation, dtype=np.float64)
+    # calculate error in volume beta (bias of mean discharge)
+    beta = np.mean(simulation_s, axis=0, dtype=np.float64) / np.mean(evaluation, axis=0, dtype=np.float64)
     # calculate the modified Kling-Gupta Efficiency KGE'
-    kge_ = 1 - np.sqrt(np.sum((np.reshape(r, (simulation_s.shape[0], 1)) - 1) ** 2 +
-                              (gamma - 1) ** 2 + (beta - 1) ** 2, axis=1))
+    kgeprime_ = 1 - np.sqrt((r - 1) ** 2 + (gamma - 1) ** 2 + (beta - 1) ** 2)
 
-    return np.vstack((kge_, r, gamma[:, 0], beta[:, 0])).T
+    return np.vstack((kgeprime_, r, gamma, beta))
 
 
 # Root Mean Square Error
 def rmse(simulation_s, evaluation):
-    rmse_ = np.sqrt(np.mean((evaluation - simulation_s) ** 2, axis=1, dtype=np.float64))
+    rmse_ = np.sqrt(np.mean((evaluation - simulation_s) ** 2, axis=0, dtype=np.float64))
 
     return rmse_
 
 
 # Mean Absolute Relative Error
 def mare(simulation_s, evaluation):
-    mare_ = np.sum(np.abs(evaluation - simulation_s), axis=1, dtype=np.float64) / np.sum(evaluation)
+    mare_ = np.sum(np.abs(evaluation - simulation_s), axis=0, dtype=np.float64) / np.sum(evaluation)
 
     return mare_
 
 
 # Percent Bias
 def pbias(simulation_s, evaluation):
-    pbias_ = 100 * np.sum(evaluation - simulation_s, axis=1, dtype=np.float64) / np.sum(evaluation)
+    pbias_ = 100 * np.sum(evaluation - simulation_s, axis=0, dtype=np.float64) / np.sum(evaluation)
 
     return pbias_
 
@@ -111,7 +106,7 @@ def nse_c2m(simulation_s, evaluation):
 
 # Bounded Version of the Original Kling-Gupta Efficiency
 def kge_c2m(simulation_s, evaluation):
-    kge_ = kge(simulation_s, evaluation)[0]
+    kge_ = kge(simulation_s, evaluation)[0, :]
     kge_c2m_ = kge_ / (2 - kge_)
 
     return kge_c2m_
@@ -119,7 +114,7 @@ def kge_c2m(simulation_s, evaluation):
 
 # Bounded Version of the Modified Kling-Gupta Efficiency
 def kgeprime_c2m(simulation_s, evaluation):
-    kgeprime_ = kgeprime(simulation_s, evaluation)[0]
+    kgeprime_ = kgeprime(simulation_s, evaluation)[0, :]
     kgeprime_c2m_ = kgeprime_ / (2 - kgeprime_)
 
     return kgeprime_c2m_

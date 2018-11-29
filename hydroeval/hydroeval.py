@@ -21,42 +21,42 @@
 import numpy as np
 
 
-def evaluator(func, simulation_s, evaluation, axis=1, transform=None, epsilon=None):
+def evaluator(func, simulation_s, evaluation, axis=0, transform=None, epsilon=None):
     assert isinstance(simulation_s, np.ndarray)
     assert isinstance(evaluation, np.ndarray)
     assert (axis == 0) or (axis == 1)
 
     # check that the evaluation data provided is a single series of data
     if evaluation.ndim == 1:
-        my_eval = np.reshape(evaluation, (1, evaluation.size))
+        my_eval = np.reshape(evaluation, (evaluation.size, 1))
     elif evaluation.ndim == 2:
         if axis == 0:
-            my_eval = evaluation.T
-        else:
             my_eval = evaluation
+        else:
+            my_eval = evaluation.T
     else:
         raise Exception('The evaluation array contains more than 2 dimensions.')
-    if not my_eval.shape[0] == 1:
+    if not my_eval.shape[1] == 1:
         raise Exception('The evaluation array does not contain a flat dimension.')
 
     # check the dimensions of the simulation data provided
     if simulation_s.ndim == 1:
-        my_simu = np.reshape(simulation_s, (1, simulation_s.size))
+        my_simu = np.reshape(simulation_s, (simulation_s.size, 1))
     elif simulation_s.ndim == 2:
         if axis == 0:
-            my_simu = simulation_s.T
-        else:
             my_simu = simulation_s
+        else:
+            my_simu = simulation_s.T
     else:
         raise Exception('The simulation array contains more than 2 dimensions.')
 
     # check that the two arrays have compatible lengths
-    if not my_simu.shape[1] == my_eval.shape[1]:
+    if not my_simu.shape[0] == my_eval.shape[0]:
         raise Exception('The simulation and evaluation arrays must have compatible dimensions.')
 
     # generate a subset of simulation and evaluation series where evaluation data is available
-    my_simu = my_simu[:, ~np.isnan(my_eval[0, :])]
-    my_eval = my_eval[:, ~np.isnan(my_eval[0, :])]
+    my_simu = my_simu[:, ~np.isnan(my_eval[:, 0])]
+    my_eval = my_eval[:, ~np.isnan(my_eval[:, 0])]
 
     # transform the flow series if required
     if transform == 'log':  # log transformation
