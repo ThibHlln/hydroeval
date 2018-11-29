@@ -29,6 +29,7 @@ The objective functions currently available in HydroEval to evaluate the fit bet
 * [Nash-Sutcliffe Efficiency](https://doi.org/10.1016/0022-1694(70)90255-6) (`nse`)
 * [Original Kling-Gupta Efficiency](https://doi.org/10.1016/j.jhydrol.2009.08.003) (`kge`) and its three components (r, α, β)
 * [Modified Kling-Gupta Efficiency](https://doi.org/10.1016/j.jhydrol.2012.01.011) (`kgeprime`) and its three components (r, γ, β)
+* [Non-Parametric Kling-Gupta Efficiency](https://doi.org/10.1080/02626667.2018.1552002) (`kgenp`) and its three components (r, α, β)
 * Root Mean Square Error (`rmse`)
 * Mean Absolute Relative Error (`mare`)
 * Percent Bias (`pbias`)
@@ -38,6 +39,7 @@ Moreover, KGE and NSE can be calculated in a bounded version following [Mathevet
 * Bounded Nash-Sutcliffe Efficiency (`nse_c2m`)
 * Bounded Original Kling-Gupta Efficiency (`kge_c2m`)
 * Bounded Modified Kling-Gupta Efficiency (`kgeprime_c2m`)
+* Bounded Non-Parametric Kling-Gupta Efficiency (`kgenp_c2m`)
 
 Finally, any of the objective functions can take an optimal argument `transform`. This argument allows to apply a transformation on both the observed and the simulated stream flow time series prior the calculation of the objective function. The possible transformations are as follows:
 * Inverted flows (using `transform='inv'`)
