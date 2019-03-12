@@ -1,5 +1,6 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![PyPI Version](https://badge.fury.io/py/hydroeval.svg)](https://pypi.python.org/pypi/hydroeval)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2591218.svg)](https://doi.org/10.5281/zenodo.2591218)
 
 # HydroEval - An open-source evaluator for stream flow time series in Python
 
@@ -22,6 +23,10 @@ Alternatively, you can download the source code (*i.e.* the GitHub repository) a
 ## How to Use
 
 A tutorial in the form of a [Jupyter notebook](https://github.com/ThibHlln/hydroeval/blob/master/examples/api_usage_example.ipynb) is available to get started with the usage of HydroEval's API. The input files required for the tutorial are all provided in the `examples/` folder.
+
+## How to Cite
+
+If you are using HydroEval, please consider citing the software using the DOI provided in the header of this file.
 
 ## Objective Functions Available
 
