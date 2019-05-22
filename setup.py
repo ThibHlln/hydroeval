@@ -32,7 +32,7 @@ setup(
 
         'Intended Audience :: Science/Research',
         'Intended Audience :: Developers',
-        'Topic :: Scientific/Engineering',
+        'Topic :: Scientific/Engineering :: Hydrology',
 
         'Operating System :: MacOS',
         'Operating System :: Microsoft :: Windows',
