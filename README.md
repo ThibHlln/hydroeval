@@ -2,9 +2,9 @@
 [![PyPI Version](https://badge.fury.io/py/hydroeval.svg)](https://pypi.python.org/pypi/hydroeval)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2591218.svg)](https://doi.org/10.5281/zenodo.2591218)
 
-# HydroEval - An open-source evaluator for stream flow time series in Python
+# HydroEval - An open-source evaluator for streamflow time series in Python
 
-HydroEval is an open-source evaluator for stream flow time series in Python. It is licensed under GNU GPL-3.0 (see [licence file](https://github.com/ThibHlln/hydroeval/blob/master/LICENCE.md) provided). The purpose of this evaluator is to compare observed and simulated hydrographs using one or more objective functions. HydroEval is designed to calculate all objective functions in a vectorised way (using [numpy](https://github.com/numpy/numpy), and therefore C code in the background) which makes for very efficient computation of the objective functions.
+HydroEval is an open-source evaluator for streamflow time series in Python. It is licensed under GNU GPL-3.0 (see [licence file](https://github.com/ThibHlln/hydroeval/blob/master/LICENCE.md) provided). The purpose of this evaluator is to compare observed and simulated hydrographs using one or more objective functions. HydroEval is designed to calculate all objective functions in a vectorised manner (using [numpy](https://github.com/numpy/numpy), and therefore C code in the background) which makes for very efficient computation of the objective functions.
 
 ## How to Install
 
@@ -39,21 +39,21 @@ The objective functions currently available in HydroEval to evaluate the fit bet
 * Mean Absolute Relative Error (`mare`)
 * Percent Bias (`pbias`)
 
-Moreover, KGE and NSE can be calculated in a bounded version following [Mathevet et al. (2008)](https://iahs.info/uploads/dms/13614.21--211-219-41-MATHEVET.pdf):
+Moreover, KGE and NSE can be calculated in a bounded version following [Mathevet et al. (2006)](https://iahs.info/uploads/dms/13614.21--211-219-41-MATHEVET.pdf):
 
 * Bounded Nash-Sutcliffe Efficiency (`nse_c2m`)
 * Bounded Original Kling-Gupta Efficiency (`kge_c2m`)
 * Bounded Modified Kling-Gupta Efficiency (`kgeprime_c2m`)
 * Bounded Non-Parametric Kling-Gupta Efficiency (`kgenp_c2m`)
 
-Finally, any of the objective functions can take an optional argument `transform`. This argument allows to apply a transformation on both the observed and the simulated stream flow time series prior the calculation of the objective function. The possible transformations are as follows:
+Finally, any of the objective functions can take an optional argument `transform`. This argument allows to apply a transformation on both the observed and the simulated streamflow time series prior the calculation of the objective function. The possible transformations are as follows:
 * Inverted flows (using `transform='inv'`)
 * Square Root-transformed flows (using `transform='sqrt'`)
 * Natural Logarithm-transformed flows (using `transform='log'`)
 
 ## Dependencies
 
-HydroEval requires the popular Python package `numpy` to be installed on the Python implementation where `hydroeval` is installed.
+HydroEval requires the Python package `numpy` to be installed on the Python implementation where `hydroeval` is installed.
 
 ## Version History
 
