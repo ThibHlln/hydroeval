@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 2018  Thibault Hallouin
+# Copyright (C) 2019  Thibault Hallouin
 from setuptools import setup
 
 
