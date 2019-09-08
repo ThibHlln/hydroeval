@@ -19,4 +19,4 @@
 # along with HydroEval. If not, see <http://www.gnu.org/licenses/>.
 
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'
