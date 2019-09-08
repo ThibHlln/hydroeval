@@ -1,8 +1,8 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![PyPI Version](https://badge.fury.io/py/hydroeval.svg)](https://pypi.python.org/pypi/hydroeval)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2591218.svg)](https://doi.org/10.5281/zenodo.2591218)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2591217.svg)](https://doi.org/10.5281/zenodo.2591217)
 
-# HydroEval - An open-source evaluator for streamflow time series in Python
+# HydroEval - An efficient evaluator for streamflow time series in Python
 
 HydroEval is an open-source evaluator for streamflow time series in Python. It is licensed under GNU GPL-3.0 (see [licence file](https://github.com/ThibHlln/hydroeval/blob/master/LICENCE.md) provided). The purpose of this evaluator is to compare observed and simulated hydrographs using one or more objective functions. HydroEval is designed to calculate all objective functions in a vectorised manner (using [numpy](https://github.com/numpy/numpy), and therefore C code in the background) which makes for very efficient computation of the objective functions.
 
@@ -26,7 +26,8 @@ A tutorial in the form of a [Jupyter notebook](https://github.com/ThibHlln/hydro
 
 ## How to Cite
 
-If you are using HydroEval, please consider citing the software using the DOI provided in the header of this file.
+If you are using HydroEval, please consider citing the software as follows (click on the link to get the DOI of a specific version):
+* Hallouin, T. (XXXX). HydroEval: Streamflow Simulations Evaluator (Version X.X.X). Zenodo. https://doi.org/10.5281/zenodo.2591217
 
 ## Objective Functions Available
 
@@ -53,15 +54,13 @@ Finally, any of the objective functions can take an optional argument `transform
 
 ## Dependencies
 
-HydroEval requires the Python package `numpy` to be installed on the Python implementation where `hydroeval` is installed.
+HydroEval requires the Python package `numpy` to be installed on the Python interpreter where `hydroeval` is installed.
 
 ## Version History
 
-* 0.0.2 [29 Nov 2018]: General improvements
-    * Re-defines axis=0 as default array orientation
-    * Adds non-parametric version of KGE
-    * Corrects mistake in bounded original and modified KGE
-* 0.0.1 [26 Oct 2018]: First version of HydroEval
+* 0.0.3 [09 Sep 2019]: [General enhancements](https://github.com/ThibHlln/hydroeval/releases/tag/v0.0.3)
+* 0.0.2 [29 Nov 2018]: [General improvements](https://github.com/ThibHlln/hydroeval/releases/tag/v0.0.2)
+* 0.0.1 [26 Oct 2018]: [First version of HydroEval](https://github.com/ThibHlln/hydroeval/releases/tag/v0.0.1)
 
 ## Acknowledgment
 

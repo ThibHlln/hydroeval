@@ -14,7 +14,7 @@ setup(
 
     version=__version__,
 
-    description='HydroEval: An Evaluator for Stream Flow Time Series',
+    description='HydroEval: An Efficient Evaluator for Streamflow Time Series In Python',
     long_description=long_desc,
     long_description_content_type="text/markdown",
 
