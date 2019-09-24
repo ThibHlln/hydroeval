@@ -141,7 +141,7 @@ def kgeprime_c2m(simulation_s, evaluation):
     return kgeprime_c2m_
 
 
-# Bounded Version of the Modified Kling-Gupta Efficiency
+# Bounded Version of the Non-Parametric Kling-Gupta Efficiency
 def kgenp_c2m(simulation_s, evaluation):
     kgenp_ = kgenp(simulation_s, evaluation)[0, :]
     kgenp_c2m_ = kgenp_ / (2 - kgenp_)
