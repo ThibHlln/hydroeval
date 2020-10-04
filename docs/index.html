@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>hydroeval python package &mdash; hydroeval 0.0.3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://thibhlln.github.io/hydroevalindex.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"jax": ["input/TeX", "output/HTML-CSS"], "displayAlign": "left", "tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home" alt="Documentation Home"> hydroeval
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Appendices</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licence.html">Licence</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">hydroeval</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><strong>hydroeval python package</strong></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="hydroeval-python-package">
+<h1><strong>hydroeval python package</strong><a class="headerlink" href="#hydroeval-python-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code> is an open-source <a class="reference internal" href="functions/hydroeval.evaluator.html#hydroeval.evaluator" title="hydroeval.evaluator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluator</span></code></a> of goodness of fit between
+simulated and observed streamflow time series in Python. It is licensed
+under GNU GPL-3.0 (see <a class="reference internal" href="licence.html#licence"><span class="std std-ref">Licence</span></a>). The package provides a bundle
+of the most commonly used objective functions in hydrological science.
+The package is designed to calculate all objective functions in a vectorised
+manner (using <a class="reference external" href="https://github.com/numpy/numpy">numpy</a>, and therefore C code
+in the background) which makes for very efficient computation of the objective
+functions.</p>
+<p>If you are using <code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code>, please consider citing the software as
+follows (click on the link to get the DOI of a specific version):</p>
+<blockquote class="pull-quote">
+<div><p><em>Hallouin, T. (XXXX). HydroEval: Streamflow Simulations Evaluator (Version X.X.X). Zenodo. https://doi.org/10.5281/zenodo.2591217</em></p>
+</div></blockquote>
+<p class="rubric">Objective Functions Available</p>
+<p>The objective functions currently available in <code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code> to evaluate the fit
+between observed and simulated stream flow time series are as follows:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doi.org/10.1016/0022-1694(70)90255-6">Nash-Sutcliffe Efficiency</a> (<a class="reference internal" href="functions/hydroeval.nse.html#hydroeval.nse" title="hydroeval.nse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nse</span></code></a>)</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.jhydrol.2009.08.003">Original Kling-Gupta Efficiency</a> (<a class="reference internal" href="functions/hydroeval.kge.html#hydroeval.kge" title="hydroeval.kge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kge</span></code></a>) and its three components (r, α, β)</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.jhydrol.2012.01.011">Modified Kling-Gupta Efficiency</a> (<a class="reference internal" href="functions/hydroeval.kgeprime.html#hydroeval.kgeprime" title="hydroeval.kgeprime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kgeprime</span></code></a>) and its three components (r, γ, β)</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1080/02626667.2018.1552002">Non-Parametric Kling-Gupta Efficiency</a> (<a class="reference internal" href="functions/hydroeval.kgenp.html#hydroeval.kgenp" title="hydroeval.kgenp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kgenp</span></code></a>) and its three components (r, α, β)</p></li>
+<li><p>Root Mean Square Error (<a class="reference internal" href="functions/hydroeval.rmse.html#hydroeval.rmse" title="hydroeval.rmse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rmse</span></code></a>)</p></li>
+<li><p>Mean Absolute Relative Error (<a class="reference internal" href="functions/hydroeval.mare.html#hydroeval.mare" title="hydroeval.mare"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mare</span></code></a>)</p></li>
+<li><p>Percent Bias (<a class="reference internal" href="functions/hydroeval.pbias.html#hydroeval.pbias" title="hydroeval.pbias"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pbias</span></code></a>)</p></li>
+</ul>
+<p>Moreover, some objective functions can be calculated in a bounded version following
+<a class="reference external" href="https://iahs.info/uploads/dms/13614.21--211-219-41-MATHEVET.pdf">Mathevet et al. (2006)</a>:</p>
+<ul class="simple">
+<li><p>Bounded Nash-Sutcliffe Efficiency (<a class="reference internal" href="functions/hydroeval.nse_c2m.html#hydroeval.nse_c2m" title="hydroeval.nse_c2m"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nse_c2m</span></code></a>)</p></li>
+<li><p>Bounded Original Kling-Gupta Efficiency (<a class="reference internal" href="functions/hydroeval.kge_c2m.html#hydroeval.kge_c2m" title="hydroeval.kge_c2m"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kge_c2m</span></code></a>)</p></li>
+<li><p>Bounded Modified Kling-Gupta Efficiency (<a class="reference internal" href="functions/hydroeval.kgeprime_c2m.html#hydroeval.kgeprime_c2m" title="hydroeval.kgeprime_c2m"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kgeprime_c2m</span></code></a>)</p></li>
+<li><p>Bounded Non-Parametric Kling-Gupta Efficiency (<a class="reference internal" href="functions/hydroeval.kgenp_c2m.html#hydroeval.kgenp_c2m" title="hydroeval.kgenp_c2m"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kgenp_c2m</span></code></a>)</p></li>
+</ul>
+<p>Finally, the <a class="reference internal" href="functions/hydroeval.evaluator.html#hydroeval.evaluator" title="hydroeval.evaluator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluator</span></code></a> can take an optional argument <em>transform</em>.
+This argument allows to apply a transformation on both the observed and the
+simulated streamflow time series prior the calculation of the objective function.
+The possible transformations are as follows:</p>
+<ul class="simple">
+<li><p>Inverted flows (using <code class="xref py py-obj docutils literal notranslate"><span class="pre">transform='inv'</span></code>)</p></li>
+<li><p>Square Root-transformed flows (using <code class="xref py py-obj docutils literal notranslate"><span class="pre">transform='sqrt'</span></code>)</p></li>
+<li><p>Natural Logarithm-transformed flows (using <code class="xref py py-obj docutils literal notranslate"><span class="pre">transform='log'</span></code>)</p></li>
+</ul>
+<p class="rubric">Acknowledgement</p>
+<p>Early versions of this tool were developed with the financial support of
+Ireland’s Environmental Protection Agency (Grant Number 2014-W-LS-5).</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Thibault Hallouin.
+      <span class="lastupdated">
+        Last updated on Oct 04, 2020.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+<span class="rst-current-version" data-toggle="rst-current-version">
+  <div style="float:left;">
+    <span class="fa fa-archive"> hydroeval</span>
+  </div>
+  <div style="float:right;">
+    v: 0.0.3
+    <span class="fa fa-caret-down"></span>
+  </div>
+</span>
+<div class="rst-other-versions">
+  
+  <dl>
+    <dt>Versions</dt>
+    
+      <dd><a href="https://thibhlln.github.io/hydroeval/">v0.0.3</a></dd>
+    
+  </dl>
+  
+  <dl>
+    <dt>External Links</dt>
+    
+      <dd><a href="https://github.com/ThibHlln/hydroeval.git"><span class="fa fa-github"> GitHub Repository</a></dd>
+    
+  </dl>
+  
+</div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
