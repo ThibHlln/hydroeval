@@ -1,0 +1,37 @@
+/* override table width restrictions */
+@media screen and (min-width: 767px) {
+
+   .wy-table-responsive table td {
+      /* !important prevents the common CSS stylesheets from overriding
+         this as on RTD they are loaded after this stylesheet */
+      white-space: normal !important;
+   }
+
+   .wy-table-responsive {
+      overflow: visible !important;
+   }
+
+   /* replace slightly off grey (#f3f6f6) for odd rows in tables
+      with proper grey one (#f6f6f6) */
+   .rst-content table.docutils:not(.field-list) tr:nth-child(2n-1) td,.wy-table-backed,.wy-table-odd td,.wy-table-striped tr:nth-child(2n-1) td {
+      background-color: #f6f6f6;
+   }
+}
+
+/* override vertical menu caption style */
+.wy-menu-vertical p.caption{
+   color:#55a5d9;
+   height:32px;
+   line-height:32px;
+   /* override padding:0 1.618em */
+   padding:0 1.578em;
+   margin:12px 0 0;
+   display:block;
+   font-weight:700;
+   /* override text-transform:uppercase */
+   text-transform:capitalize;
+   /* override font-size:85% */
+   font-size:90%;
+   white-space:nowrap
+}
+
