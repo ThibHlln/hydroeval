@@ -1,9 +1,5 @@
-# -*- coding: utf-8 -*-
-
-# This file is part of HydroEval: An Evaluator for Stream Flow Time Series
-# Copyright (C) 2019  Thibault Hallouin (1)
-#
-# (1) Dooge Centre for Water Resources Research, University College Dublin, Ireland
+# This file is part of HydroEval: an evaluator for streamflow time series
+# Copyright (C) 2020  Thibault Hallouin
 #
 # HydroEval is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
