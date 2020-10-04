@@ -245,7 +245,7 @@ def nse_c2m(simulations, evaluation):
 
     :Calculation Details:
         .. math::
-           E_{\\text{NSE}_{\\text{C2M}}} = \\frac{E_{\\text{NSE}}}
+           E_{\\text{NSE,C2M}} = \\frac{E_{\\text{NSE}}}
            {2 - E_{\\text{NSE}}}
 
     """
