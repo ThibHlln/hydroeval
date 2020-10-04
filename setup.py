@@ -17,7 +17,7 @@ setup(
     long_description=long_desc,
     long_description_content_type="text/markdown",
 
-    url='https://github.com/ThibHlln/hydroeval',
+    url='https://thibhlln.github.io/hydroeval',
 
     author='Thibault Hallouin',
     author_email='thibault.hallouin@ucdconnect.ie',
