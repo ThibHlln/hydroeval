@@ -29,7 +29,7 @@ requires `numpy.ndarray` as inputs for streamflow time series.
 
    >>> from netCDF4 import Dataset
    >>> from cfunits import Units
-   >>> with Dataset('examples/catchment.sim.flow.nc', 'r', format='NETCDF4') as f:
+   >>> with Dataset('sample_data/catchment.sim.flow.nc', 'r', format='NETCDF4') as f:
    ...     sim_flow = f.variables['flow'][:]  # ensemble of simulated streamflow series
    ...     sim_flow_units = Units(f.variables['flow'].units)
    ...     sim_time = f.variables['time'][:]  # timestamps for simulated period
@@ -37,7 +37,7 @@ requires `numpy.ndarray` as inputs for streamflow time series.
    ...     sim_time_units.calendar = f.variables['time'].calendar
    >>> print(sim_flow.shape, sim_time.shape)
    (20, 4383) (4383,)
-   >>> with Dataset('examples/catchment.obs.flow.nc', 'r', format='NETCDF4') as f:
+   >>> with Dataset('sample_data/catchment.obs.flow.nc', 'r', format='NETCDF4') as f:
    ...     obs_flow = f.variables['flow'][:]  # observed streamflow series
    ...     obs_flow_units = Units(f.variables['flow'].units)
    ...     obs_time = f.variables['time'][:]  # timestamps for observed period
