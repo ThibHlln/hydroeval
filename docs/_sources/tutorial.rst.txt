@@ -33,16 +33,14 @@ requires `numpy.ndarray` as inputs for streamflow time series.
    ...     sim_flow = f.variables['flow'][:]  # ensemble of simulated streamflow series
    ...     sim_flow_units = Units(f.variables['flow'].units)
    ...     sim_time = f.variables['time'][:]  # timestamps for simulated period
-   ...     sim_time_units = Units(f.variables['time'].units)
-   ...     sim_time_units.calendar = f.variables['time'].calendar
+   ...     sim_time_units = Units(f.variables['time'].units, f.variables['time'].calendar)
    >>> print(sim_flow.shape, sim_time.shape)
    (20, 4383) (4383,)
    >>> with Dataset('sample_data/catchment.obs.flow.nc', 'r', format='NETCDF4') as f:
    ...     obs_flow = f.variables['flow'][:]  # observed streamflow series
    ...     obs_flow_units = Units(f.variables['flow'].units)
    ...     obs_time = f.variables['time'][:]  # timestamps for observed period
-   ...     obs_time_units = Units(f.variables['time'].units)
-   ...     obs_time_units.calendar = f.variables['time'].calendar
+   ...     obs_time_units = Units(f.variables['time'].units, f.variables['time'].calendar)
    >>> print(obs_flow.shape, obs_time.shape)
    (4383,) (4383,)
 
