@@ -220,7 +220,7 @@ def pbias(simulations, evaluation):
 
     :Calculation Details:
         .. math::
-           E_{PBias} = 100 × \\frac{\\sum_{i=1}^{N}(e_{i}-s_{i})}{\\sum_{i=1}^{N}e_{i}}
+           E_{\\text{PBias}} = 100 × \\frac{\\sum_{i=1}^{N}(e_{i}-s_{i})}{\\sum_{i=1}^{N}e_{i}}
 
         where *N* is the length of the *simulations* and *evaluation*
         periods, *e* is the *evaluation* series, and *s* is (one of)
