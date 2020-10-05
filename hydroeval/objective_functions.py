@@ -300,14 +300,14 @@ def kgeprime_c2m(simulations, evaluation):
 
 
 def kgenp_c2m(simulations, evaluation):
-    """Non-Parametric Kling-Gupta Efficiency (KGEnp) in a bounded
+    """Non-Parametric Kling-Gupta Efficiency (KGE\\ :sub:`NP`\\) in a bounded
     version as per `Mathevet et al., 2006
     <https://iahs.info/uploads/dms/13614.21--211-219-41-MATHEVET.pdf>`_.
 
-    See `kgenp` for details on KGEnp.
+    See `kgenp` for details on KGE\\ :sub:`NP`\\.
 
-    Note, only the composite objective function KGEnp is bounded and
-    returned, not its constituents r, α, β.
+    Note, only the composite objective function (KGE\\ :sub:`NP`\\) is bounded
+    and returned, not its constituents r\\ :sub:`S`\\ , α\\ :sub:`NP`\\, β.
 
     :Calculation Details:
         .. math::
