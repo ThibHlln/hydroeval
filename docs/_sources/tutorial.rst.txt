@@ -18,7 +18,7 @@ time series.
 
 .. rubric:: Load streamflow time series
 
-Example files are provided in the folder *examples/* in order for anyone
+Example files are provided in the folder *sample_data/* in order for anyone
 to reproduce this tutorial. Because this is a NetCDF file, we are going
 to use the Python package `netCDF4` to read the data in, but `hydroeval`
 is independent of the file format you are working with because it only
