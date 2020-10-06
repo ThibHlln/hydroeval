@@ -256,18 +256,18 @@ units are equal.</p>
 <p class="rubric">Calculate any available objective function</p>
 <p>Now that the dataset is loaded in memory, it is time to use <code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code>
 to compare the simulated and observed hydrograph(s). To do so, import
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code>, which will give you access to its <code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluator</span></code>
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code>, which will give you access to its <a class="reference internal" href="functions/hydroeval.evaluator.html#hydroeval.evaluator" title="hydroeval.evaluator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluator</span></code></a>
 Python function as well as all objective functions implemented
 in <code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code> (as Python functions as well).</p>
 <p>By default, <code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code> expects the time dimension to be on <code class="xref py py-obj docutils literal notranslate"><span class="pre">axis=0</span></code>.
 In this example, this is not the case, so we need to specify explicitly
 that it is on <code class="xref py py-obj docutils literal notranslate"><span class="pre">axis=1</span></code>.</p>
-<p>For single-component objective functions such as <code class="xref py py-obj docutils literal notranslate"><span class="pre">nse</span></code>, the value returned
+<p>For single-component objective functions such as <a class="reference internal" href="functions/hydroeval.nse.html#hydroeval.nse" title="hydroeval.nse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nse</span></code></a>, the value returned
 is either a scalar if only one simulation time series is evaluated, or
 a 1-dimensional <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> if the several simulation time series are
 evaluated.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">Calculating the Nash-Sutcliffe Efficiency <code class="xref py py-obj docutils literal notranslate"><span class="pre">nse</span></code>.</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Calculating the Nash-Sutcliffe Efficiency <a class="reference internal" href="functions/hydroeval.nse.html#hydroeval.nse" title="hydroeval.nse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nse</span></code></a>.</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hydroeval</span> <span class="kn">import</span> <span class="n">evaluator</span><span class="p">,</span> <span class="n">nse</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">my_nse</span> <span class="o">=</span> <span class="n">evaluator</span><span class="p">(</span><span class="n">nse</span><span class="p">,</span> <span class="n">sim_flow</span><span class="p">,</span> <span class="n">obs_flow</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">my_nse</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -285,12 +285,12 @@ values should be set to <a class="reference external" href="https://numpy.org/do
 array for <code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code> to be aware of the positions of the values to
 pairwise delete in both observed and simulated time series.</p>
 </div>
-<p>For multi-component objective functions such as <code class="xref py py-obj docutils literal notranslate"><span class="pre">kge</span></code> and its variants,
+<p>For multi-component objective functions such as <a class="reference internal" href="functions/hydroeval.kge.html#hydroeval.kge" title="hydroeval.kge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kge</span></code></a> and its variants,
 the orientation of the input array is preserved in the output array
 (i.e. the time dimension will be reduced to the number of components
 in the objective function).</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text">Calculating the Kling-Gupta Efficiency <code class="xref py py-obj docutils literal notranslate"><span class="pre">kge</span></code> on inverse-transformed flows.</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Calculating the Kling-Gupta Efficiency <a class="reference internal" href="functions/hydroeval.kge.html#hydroeval.kge" title="hydroeval.kge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kge</span></code></a> on inverse-transformed flows.</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hydroeval</span> <span class="kn">import</span> <span class="n">evaluator</span><span class="p">,</span> <span class="n">kge</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">my_kge</span> <span class="o">=</span> <span class="n">evaluator</span><span class="p">(</span><span class="n">kge</span><span class="p">,</span> <span class="n">sim_flow</span><span class="p">,</span> <span class="n">obs_flow</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="s1">&#39;inv&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">my_kge</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>

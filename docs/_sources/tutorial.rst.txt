@@ -1,4 +1,4 @@
-.. currentmodule:: eflowcalc
+.. currentmodule:: hydroeval
 .. default-role:: obj
 
 Tutorial
