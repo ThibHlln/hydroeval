@@ -148,7 +148,7 @@ def kgenp(simulations, evaluation):
         .. math::
            \\alpha_{\\text{NP}} = 1 - \\frac{1}{2} \\sum_{k=1}^{N}
            \\Bigl| \\frac{s_{I(k)}}{N \\cdot \\mu(s)}
-           - \\frac{e_{I(k)}}{N \\cdot \\mu(e)} \\Bigr|
+           - \\frac{e_{J(k)}}{N \\cdot \\mu(e)} \\Bigr|
         .. math::
            \\beta = \\frac{\\mu(s)}{\\mu(e)}
 
