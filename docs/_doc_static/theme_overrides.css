@@ -11,11 +11,31 @@
       overflow: visible !important;
    }
 
-   /* replace slightly off grey (#f3f6f6) for odd rows in tables
-      with proper grey one (#f6f6f6) */
-   .rst-content table.docutils:not(.field-list) tr:nth-child(2n-1) td,.wy-table-backed,.wy-table-odd td,.wy-table-striped tr:nth-child(2n-1) td {
-      background-color: #f6f6f6;
-   }
+}
+
+/* replace slightly off grey (#f3f6f6) for odd rows in tables
+   with proper grey one (#f6f6f6) */
+.rst-content table.docutils:not(.field-list) tr:nth-child(2n-1) td, .wy-table-backed, .wy-table-odd td, .wy-table-striped tr:nth-child(2n-1) td {
+   background-color: #f6f6f6;
+}
+
+/* override hyperlink style for rst content */
+.rst-content a:link, .rst-content a:visited{
+   color:#2980b9;
+   text-decoration: none;
+   border-bottom: 1px dotted #2980b9
+}
+.rst-content a:hover{
+   color:#3091d1;
+   border-bottom: 1px solid #3091d1
+}
+
+/* override hyperlink style for breadcrumbs (top navigation) */
+.wy-breadcrumbs a:link, .wy-breadcrumbs a:visited{
+   border-bottom: none
+}
+.wy-breadcrumbs a:hover{
+   border-bottom: none
 }
 
 /* override vertical menu caption style */
@@ -34,4 +54,3 @@
    font-size:90%;
    white-space:nowrap
 }
-
