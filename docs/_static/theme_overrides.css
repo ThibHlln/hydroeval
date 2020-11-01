@@ -38,6 +38,11 @@
    border-bottom: none
 }
 
+.rst-content a:hover code.literal{
+   color:#3091d1;
+   border: 1px solid #3091d1
+}
+
 /* override vertical menu caption style */
 .wy-menu-vertical p.caption{
    color:#55a5d9;
