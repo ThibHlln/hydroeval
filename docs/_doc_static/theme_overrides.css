@@ -39,7 +39,7 @@
 }
 
 /* override hyperlink style for code literals */
-.rst-conten a:hover code.literal{
+.rst-content a:hover code.literal{
    color: #3091d1;
    border: 1px solid #3091d1
 }
