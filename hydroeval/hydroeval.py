@@ -23,7 +23,8 @@ def evaluator(obj_fn, simulations, evaluation, axis=0,
     """Evaluate the goodness of fit between one time series of simulated
     streamflow stored in a 1D array (or several time series of equal
     length stored in a 2D array) and one time series of the corresponding
-    observed streamflow for the same period stored in a 1D array.
+    observed streamflow for the same period stored in a 1D array. Missing
+    values can be set as `numpy.nan` for paiwise deletion to be performed.
 
     :Parameters:
 
@@ -34,11 +35,11 @@ def evaluator(obj_fn, simulations, evaluation, axis=0,
 
             *Parameter example:* ::
 
-                obj_fn=nse
+                obj_fn=hydroeval.nse
 
             *Parameter example:* ::
 
-                obj_fn=kge
+                obj_fn=hydroeval.kge
 
         simulations: array-like object
             The array of simulated streamflow values to be compared
@@ -91,7 +92,63 @@ def evaluator(obj_fn, simulations, evaluation, axis=0,
             recommended by `Pushpalatha et al. (2012)
             <https://doi.org/10.1016/j.jhydrol.2011.11.055>`_.
 
-        """
+    **Examples**
+
+    >>> import hydroeval as he
+    >>> print(he.evaluator(he.nse, [5.3, 4.2, 5.7, 2.3], [4.7, 4.3, 5.5, 2.7]))
+    [0.86298077]
+    >>> print(he.evaluator(he.kge, [5.3, 4.2, 5.7, 2.3], [4.7, 4.3, 5.5, 2.7]))
+    [[0.7066232 ]
+     [0.98213905]
+     [1.2923127 ]
+     [1.01744186]]
+
+    Computations on multiple simulation series at once are possible.
+
+    >>> print(he.evaluator(he.kge, [[5.3, 4.6], [4.2, 4.2], [5.7, 5.3], [2.3, 2.8]],
+    ...                    [4.7, 4.3, 5.5, 2.7]))
+    [[0.7066232  0.8929297 ]
+     [0.98213905 0.99985551]
+     [1.2923127  0.89436   ]
+     [1.01744186 0.98255814]]
+    >>> print(he.evaluator(he.kge, [[5.3, 4.2, 5.7, 2.3], [4.6, 4.2, 5.3, 2.8]],
+    ...                    [4.7, 4.3, 5.5, 2.7], axis=1))
+    [[0.7066232  0.98213905 1.2923127  1.01744186]
+     [0.8929297  0.99985551 0.89436    0.98255814]]
+
+    In case of missing observations (flagged as NaN), `hydroeval` performs pairwise deletion.
+
+    >>> import numpy as np
+    >>> print(he.evaluator(he.nse,
+    ...                    [5.3, 4.2, 5.7, 2.3], [4.7, 4.3, np.nan, 2.7]))
+    [0.76339286]
+    >>> print(he.evaluator(he.nse,
+    ...                    [5.3, 4.2, 2.3], [4.7, 4.3, 2.7]))
+    [0.76339286]
+
+    Pre-computation transformations on data are possible with parameter *transform*.
+
+    >>> print(he.evaluator(he.nse, [5.3, 4.2, 5.7, 2.3], [4.7, 4.3, 5.5, 2.7],
+    ...                    transform='sqrt'))
+    [0.86356266]
+
+    When using reciprocal or logarithm transform function, default *epsilon*
+    added to all flows to avoid zero flows. *epsilon* is customisable.
+
+    >>> print(he.evaluator(he.kge, [5.3, 4.2, 5.7, 0.0], [4.7, 4.3, 5.5, 0.1],
+    ...                    transform='inv'))
+    [[-2.78380731]
+     [ 0.99999157]
+     [ 3.82066207]
+     [ 3.52211483]]
+    >>> print(he.evaluator(he.kge, [5.3, 4.2, 5.7, 0.0], [4.7, 4.3, 5.5, 0.1],
+    ...                    transform='inv', epsilon=0.073))
+    [[-0.88255825]
+     [ 0.99999145]
+     [ 2.42185928]
+     [ 2.23383214]]
+
+    """
     # check types/values of the different arguments given,
     # if not compliant, abort
     simulations = np.asarray(simulations)
