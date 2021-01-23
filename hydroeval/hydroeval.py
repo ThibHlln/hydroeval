@@ -15,6 +15,7 @@
 # along with HydroEval. If not, see <http://www.gnu.org/licenses/>.
 
 import numpy as np
+import numbers
 
 
 def evaluator(obj_fn, simulations, evaluation, axis=0,
@@ -39,13 +40,13 @@ def evaluator(obj_fn, simulations, evaluation, axis=0,
 
                 obj_fn=kge
 
-        simulations: `numpy.ndarray`
+        simulations: array-like object
             The array of simulated streamflow values to be compared
             against the *observation* using the *obj_fn*. Note, the
             array can be one or two dimensional. If it is 2D, the time
             dimension must be the one specified through *axis*.
 
-        evaluation: `numpy.ndarray`
+        evaluation: array-like object
             The array of observed streamflow values to be compared
             against the *simulations* using the *obj_fn*. Note, the
             array can be one or two dimensional. If it is 2D, the
@@ -93,10 +94,16 @@ def evaluator(obj_fn, simulations, evaluation, axis=0,
         """
     # check types/values of the different arguments given,
     # if not compliant, abort
-    if not isinstance(simulations, np.ndarray):
+    simulations = np.asarray(simulations)
+    if not simulations.shape:
         raise TypeError('simulations must be an array')
-    if not isinstance(evaluation, np.ndarray):
+    if not np.issubdtype(simulations.dtype, np.number):
+        raise TypeError('simulations array must contain numerical values')
+    evaluation = np.asarray(evaluation)
+    if not evaluation.shape:
         raise TypeError('evaluation must be an array')
+    if not np.issubdtype(evaluation.dtype, np.number):
+        raise TypeError('evaluation array must contain numerical values')
     if axis not in (0, 1):
         raise IndexError('index for axis must be 0 or 1')
     if transform is not None:
@@ -112,7 +119,7 @@ def evaluator(obj_fn, simulations, evaluation, axis=0,
     elif evaluation.ndim == 2:
         if axis == 0:
             my_eval = evaluation
-        else:
+        else:  # axis == 1
             my_eval = evaluation.T
     else:
         raise ValueError('evaluation array contains more than 2 dimensions')
@@ -125,7 +132,7 @@ def evaluator(obj_fn, simulations, evaluation, axis=0,
     elif simulations.ndim == 2:
         if axis == 0:
             my_simu = simulations
-        else:
+        else:  # axis == 1
             my_simu = simulations.T
     else:
         raise ValueError('simulation array contains more than 2 dimensions')
