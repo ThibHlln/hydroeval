@@ -1,5 +1,5 @@
-Evaluator on array
-==================
+Evaluator
+=========
 
 .. currentmodule:: hydroeval
 .. default-role:: obj

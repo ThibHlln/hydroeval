@@ -20,6 +20,17 @@ follows (click on the link to get the DOI of a specific version):
 
    *Hallouin, T. (XXXX). HydroEval: Streamflow Simulations Evaluator (Version X.X.X). Zenodo.* `<https://doi.org/10.5281/zenodo.2591217>`_
 
+.. rubric:: Quick example of API
+
+.. code-block:: python
+
+   import hydroeval as he
+
+   kge, r, alpha, beta = he.evaluator(he.kge,
+                                      simulations=[5.3, 4.2, 5.7, 2.3],
+                                      evaluations=[4.7, 4.3, 5.5, 2.7])
+
+
 .. rubric:: Objective Functions Available
 
 The objective functions currently available in `hydroeval` to evaluate the fit
