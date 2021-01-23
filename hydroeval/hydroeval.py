@@ -91,9 +91,20 @@ def evaluator(obj_fn, simulations, evaluation, axis=0,
             <https://doi.org/10.1016/j.jhydrol.2011.11.055>`_.
 
         """
-    assert isinstance(simulations, np.ndarray)
-    assert isinstance(evaluation, np.ndarray)
-    assert (axis == 0) or (axis == 1)
+    # check types/values of the different arguments given,
+    # if not compliant, abort
+    if not isinstance(simulations, np.ndarray):
+        raise TypeError('simulations must be an array')
+    if not isinstance(evaluation, np.ndarray):
+        raise TypeError('evaluation must be an array')
+    if axis not in (0, 1):
+        raise IndexError('index for axis must be 0 or 1')
+    if transform is not None:
+        if transform not in ('inv', 'sqrt', 'log'):
+            raise ValueError('transform parameter not supported')
+    if epsilon is not None:
+        if not isinstance(epsilon, numbers.Number):
+            raise TypeError('epsilon must be a number')
 
     # check that the evaluation data provided is a single series of data
     if evaluation.ndim == 1:
@@ -104,9 +115,9 @@ def evaluator(obj_fn, simulations, evaluation, axis=0,
         else:
             my_eval = evaluation.T
     else:
-        raise Exception('evaluation array contains more than 2 dimensions')
+        raise ValueError('evaluation array contains more than 2 dimensions')
     if not my_eval.shape[1] == 1:
-        raise Exception('evaluation array is not flat')
+        raise ValueError('evaluation array is not flat')
 
     # check the dimensions of the simulation data provided
     if simulations.ndim == 1:
@@ -117,12 +128,12 @@ def evaluator(obj_fn, simulations, evaluation, axis=0,
         else:
             my_simu = simulations.T
     else:
-        raise Exception('simulation array contains more than 2 dimensions')
+        raise ValueError('simulation array contains more than 2 dimensions')
 
     # check that the two arrays have compatible lengths
     if not my_simu.shape[0] == my_eval.shape[0]:
-        raise Exception('simulation and evaluation arrays feature '
-                        'incompatible dimensions')
+        raise ValueError('simulation and evaluation arrays feature '
+                         'incompatible dimensions')
 
     # generate a subset of simulation and evaluation series
     # where evaluation data is available
