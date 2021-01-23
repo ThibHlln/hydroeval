@@ -18,7 +18,7 @@ follows (click on the link to get the DOI of a specific version):
 
 .. pull-quote::
 
-   *Hallouin, T. (XXXX). HydroEval: Streamflow Simulations Evaluator (Version X.X.X). Zenodo. https://doi.org/10.5281/zenodo.2591217*
+   *Hallouin, T. (XXXX). HydroEval: Streamflow Simulations Evaluator (Version X.X.X). Zenodo.* `<https://doi.org/10.5281/zenodo.2591217>`_
 
 .. rubric:: Objective Functions Available
 
