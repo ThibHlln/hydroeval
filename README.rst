@@ -4,6 +4,9 @@
 .. image:: https://badge.fury.io/py/hydroeval.svg
    :target: https://pypi.python.org/pypi/hydroeval
    :alt: PyPI Version
+.. image:: https://www.travis-ci.org/ThibHlln/hydroeval.svg?branch=master
+   :target: https://www.travis-ci.org/ThibHlln/hydroeval
+   :alt: Travis CI Build Status
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.2591217.svg
    :target: https://doi.org/10.5281/zenodo.2591217
    :alt: DOI
