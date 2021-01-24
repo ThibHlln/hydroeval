@@ -112,17 +112,28 @@ def kgeprime(simulations, evaluation):
         standard deviation, and *μ* is the arithmetic mean.
 
     """
-    # calculate error in timing and dynamics r (Pearson's correlation coefficient)
+    # calculate error in timing and dynamics r
+    # (Pearson's correlation coefficient)
     sim_mean = np.mean(simulations, axis=0, dtype=np.float64)
     obs_mean = np.mean(evaluation, dtype=np.float64)
-    r = np.sum((simulations - sim_mean) * (evaluation - obs_mean), axis=0, dtype=np.float64) / \
-        np.sqrt(np.sum((simulations - sim_mean) ** 2, axis=0, dtype=np.float64) *
-                np.sum((evaluation - obs_mean) ** 2, dtype=np.float64))
-    # calculate error in spread of flow gamma (avoiding cross correlation with bias by dividing by the mean)
-    gamma = (np.std(simulations, axis=0, dtype=np.float64) / sim_mean) / \
-            (np.std(evaluation, dtype=np.float64) / obs_mean)
+
+    r_num = np.sum((simulations - sim_mean) * (evaluation - obs_mean),
+                   axis=0, dtype=np.float64)
+    r_den = np.sqrt(np.sum((simulations - sim_mean) ** 2,
+                           axis=0, dtype=np.float64)
+                    * np.sum((evaluation - obs_mean) ** 2,
+                             dtype=np.float64))
+    r = r_num / r_den
+
+    # calculate error in spread of flow gamma
+    # (avoiding cross correlation with bias by dividing by the mean)
+    gamma = ((np.std(simulations, axis=0, dtype=np.float64) / sim_mean)
+             / (np.std(evaluation, dtype=np.float64) / obs_mean))
+
     # calculate error in volume beta (bias of mean discharge)
-    beta = np.mean(simulations, axis=0, dtype=np.float64) / np.mean(evaluation, axis=0, dtype=np.float64)
+    beta = (np.mean(simulations, axis=0, dtype=np.float64)
+            / np.mean(evaluation, axis=0, dtype=np.float64))
+
     # calculate the modified Kling-Gupta Efficiency KGE'
     kgeprime_ = 1 - np.sqrt((r - 1) ** 2 + (gamma - 1) ** 2 + (beta - 1) ** 2)
 
@@ -161,19 +172,39 @@ def kgenp(simulations, evaluation):
         the arithmetic mean.
 
     """
-    # calculate error in timing and dynamics r (Spearman's correlation coefficient)
+    # calculate error in timing and dynamics r
+    # (Spearman's correlation coefficient)
     sim_rank = np.argsort(np.argsort(simulations, axis=0), axis=0)
     obs_rank = np.argsort(np.argsort(evaluation, axis=0), axis=0)
-    r = np.sum((obs_rank - np.mean(obs_rank, axis=0, dtype=np.float64)) *
-               (sim_rank - np.mean(sim_rank, axis=0, dtype=np.float64)), axis=0) / \
-        np.sqrt(np.sum((obs_rank - np.mean(obs_rank, axis=0, dtype=np.float64)) ** 2, axis=0) *
-                (np.sum((sim_rank - np.mean(sim_rank, axis=0, dtype=np.float64)) ** 2, axis=0)))
+
+    r_num = np.sum((obs_rank - np.mean(obs_rank, axis=0, dtype=np.float64))
+                   * (sim_rank - np.mean(sim_rank, axis=0, dtype=np.float64)),
+                   axis=0)
+    r_den = np.sqrt(
+        np.sum((obs_rank - np.mean(obs_rank, axis=0, dtype=np.float64)) ** 2,
+               axis=0)
+        * np.sum((sim_rank - np.mean(sim_rank, axis=0, dtype=np.float64)) ** 2,
+                 axis=0)
+    )
+    r = r_num / r_den
+
     # calculate error in timing and dynamics alpha (flow duration curve)
-    sim_fdc = np.sort(simulations / (simulations.shape[0] * np.mean(simulations, axis=0, dtype=np.float64)), axis=0)
-    obs_fdc = np.sort(evaluation / (evaluation.shape[0] * np.mean(evaluation, axis=0, dtype=np.float64)), axis=0)
+    sim_fdc = np.sort(
+        simulations / (simulations.shape[0] * np.mean(simulations, axis=0,
+                                                      dtype=np.float64)),
+        axis=0
+    )
+    obs_fdc = np.sort(
+        evaluation / (evaluation.shape[0] * np.mean(evaluation, axis=0,
+                                                    dtype=np.float64)),
+        axis=0
+    )
     alpha = 1 - 0.5 * np.sum(np.abs(sim_fdc - obs_fdc), axis=0)
+
     # calculate error in volume beta (bias of mean discharge)
-    beta = np.mean(simulations, axis=0) / np.mean(evaluation, axis=0, dtype=np.float64)
+    beta = (np.mean(simulations, axis=0)
+            / np.mean(evaluation, axis=0, dtype=np.float64))
+
     # calculate the non-parametric Kling-Gupta Efficiency KGEnp
     kgenp_ = 1 - np.sqrt((r - 1) ** 2 + (alpha - 1) ** 2 + (beta - 1) ** 2)
 
@@ -192,7 +223,8 @@ def rmse(simulations, evaluation):
         *simulations* series.
 
     """
-    rmse_ = np.sqrt(np.mean((evaluation - simulations) ** 2, axis=0, dtype=np.float64))
+    rmse_ = np.sqrt(np.mean((evaluation - simulations) ** 2,
+                            axis=0, dtype=np.float64))
 
     return rmse_
 
@@ -210,7 +242,8 @@ def mare(simulations, evaluation):
         *simulations* series.
 
     """
-    mare_ = np.sum(np.abs(evaluation - simulations), axis=0, dtype=np.float64) / np.sum(evaluation)
+    mare_ = (np.sum(np.abs(evaluation - simulations), axis=0, dtype=np.float64)
+             / np.sum(evaluation))
 
     return mare_
 
@@ -227,7 +260,8 @@ def pbias(simulations, evaluation):
         the *simulations* series.
 
     """
-    pbias_ = 100 * np.sum(evaluation - simulations, axis=0, dtype=np.float64) / np.sum(evaluation)
+    pbias_ = (100 * np.sum(evaluation - simulations, axis=0, dtype=np.float64)
+              / np.sum(evaluation))
 
     return pbias_
 
