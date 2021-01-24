@@ -19,6 +19,15 @@
    background-color: #f6f6f6;
 }
 
+/* override hyperlink style for images */
+.rst-content a.image-reference:link, .rst-content a.image-reference:visited{
+   border-bottom: none
+}
+
+.rst-content a.image-reference:hover{
+   border-bottom: none
+}
+
 /* override hyperlink style for rst content */
 .rst-content a:link, .rst-content a:visited{
    color:#2980b9;

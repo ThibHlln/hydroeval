@@ -1,27 +1,29 @@
 .. currentmodule:: hydroeval
 .. default-role:: obj
 
-**hydroeval python package**
-############################
+Overview
+========
 
-.. include:: overview.rst
+.. include:: ../../README.rst
 
+
+.. add index to sidebar
+
+.. toctree::
+   :hidden:
+   :titlesonly:
+
+   self
+
+.. add user guide to sidebar
 
 .. toctree::
    :hidden:
    :maxdepth: 1
-   :caption: Contents
+   :caption: User Guide
 
-   overview
    installation
    api
    tutorial
-
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-   :caption: Appendices
-
    genindex
    licence

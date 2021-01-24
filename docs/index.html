@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>hydroeval python package &mdash; hydroeval 0.0.3 documentation</title>
+  <title>Overview &mdash; hydroeval 0.0.3 documentation</title>
   
 
   
@@ -42,7 +42,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Overview" href="overview.html" /> 
+    <link rel="next" title="Installation" href="installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,15 +91,14 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents</span></p>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Appendices</span></p>
-<ul>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 <li class="toctree-l1"><a class="reference internal" href="licence.html">Licence</a></li>
 </ul>
@@ -148,7 +147,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li><strong>hydroeval python package</strong></li>
+      <li>Overview</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -189,32 +188,38 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="hydroeval-python-package">
-<h1><strong>hydroeval python package</strong><a class="headerlink" href="#hydroeval-python-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://www.gnu.org/licenses/gpl-3.0"><img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/hydroeval"><img alt="PyPI Version" src="https://badge.fury.io/py/hydroeval.svg" /></a>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.2591217"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.2591217.svg" /></a>
+<div class="section" id="an-evaluator-for-streamflow-time-series-in-python">
+<h2>An evaluator for streamflow time series in Python<a class="headerlink" href="#an-evaluator-for-streamflow-time-series-in-python" title="Permalink to this headline">¶</a></h2>
 <p><code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code> is an open-source <a class="reference internal" href="functions/hydroeval.evaluator.html#hydroeval.evaluator" title="hydroeval.evaluator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluator</span></code></a> of goodness of fit between
 simulated and observed streamflow time series in Python. It is licensed
-under GNU GPL-3.0 (see <a class="reference internal" href="licence.html#licence"><span class="std std-ref">Licence</span></a>). The package provides a bundle
-of the most commonly used objective functions in hydrological science.
-The package is designed to calculate all objective functions in a vectorised
-manner (using <a class="reference external" href="https://github.com/numpy/numpy">numpy</a>, and therefore C code
-in the background) which makes for very efficient computation of the objective
-functions.</p>
+under GNU GPL-3.0. The package provides a bundle of the most commonly
+used objective functions in hydrological science. The package is designed
+to calculate all objective functions in a vectorised manner (using
+<a class="reference external" href="https://github.com/numpy/numpy">numpy</a>, and therefore C code
+in the background) which makes for very efficient computation of the
+objective functions.</p>
 <p>If you are using <code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code>, please consider citing the software as
 follows (click on the link to get the DOI of a specific version):</p>
 <blockquote class="pull-quote">
 <div><p><em>Hallouin, T. (XXXX). HydroEval: Streamflow Simulations Evaluator (Version X.X.X). Zenodo.</em> <a class="reference external" href="https://doi.org/10.5281/zenodo.2591217">https://doi.org/10.5281/zenodo.2591217</a></p>
 </div></blockquote>
-<p class="rubric">Quick example of API</p>
+<p class="rubric">Brief overview of the API</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hydroeval</span> <span class="k">as</span> <span class="nn">he</span>
 
-<span class="n">kge</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="n">he</span><span class="o">.</span><span class="n">evaluator</span><span class="p">(</span><span class="n">he</span><span class="o">.</span><span class="n">kge</span><span class="p">,</span>
-                                   <span class="n">simulations</span><span class="o">=</span><span class="p">[</span><span class="mf">5.3</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">,</span> <span class="mf">5.7</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">],</span>
-                                   <span class="n">evaluations</span><span class="o">=</span><span class="p">[</span><span class="mf">4.7</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">])</span>
+<span class="n">simulations</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.3</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">,</span> <span class="mf">5.7</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">]</span>
+<span class="n">evaluations</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.7</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">]</span>
+
+<span class="n">nse</span> <span class="o">=</span> <span class="n">he</span><span class="o">.</span><span class="n">evaluator</span><span class="p">(</span><span class="n">he</span><span class="o">.</span><span class="n">nse</span><span class="p">,</span> <span class="n">simulations</span><span class="p">,</span> <span class="n">evaluations</span><span class="p">)</span>
+
+<span class="n">kge</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="n">he</span><span class="o">.</span><span class="n">evaluator</span><span class="p">(</span><span class="n">he</span><span class="o">.</span><span class="n">kge</span><span class="p">,</span> <span class="n">simulations</span><span class="p">,</span> <span class="n">evaluations</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="rubric">Objective Functions Available</p>
+<p class="rubric">Objective functions available</p>
 <p>The objective functions currently available in <code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code> to evaluate the fit
 between observed and simulated stream flow time series are as follows:</p>
 <ul class="simple">
@@ -267,7 +272,7 @@ Ireland’s Environmental Protection Agency (Grant Number 2014-W-LS-5).</p>
         
         &copy; Copyright 2021, Thibault Hallouin.
       <span class="lastupdated">
-        Last updated on Jan 23, 2021.
+        Last updated on Jan 24, 2021.
       </span>
 
     </p>

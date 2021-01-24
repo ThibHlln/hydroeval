@@ -50,8 +50,7 @@ extensions = [
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.githubpages',
     'nbsphinx',
-    'sphinx.ext.mathjax',
-    'm2r2'  # extension for markdown to rst
+    'sphinx.ext.mathjax'
 ]
 
 # Boolean indicating whether to scan all found documents for

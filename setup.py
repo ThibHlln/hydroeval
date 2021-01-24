@@ -2,7 +2,7 @@
 from setuptools import setup
 
 
-with open("README.md", "r") as fd:
+with open("README.rst", "r") as fd:
     long_desc = fd.read()
 
 with open('hydroeval/version.py') as fv:
@@ -15,9 +15,14 @@ setup(
 
     description='HydroEval: An Efficient Evaluator for Streamflow Time Series In Python',
     long_description=long_desc,
-    long_description_content_type="text/markdown",
+    long_description_content_type="text/x-rst",
 
     url='https://thibhlln.github.io/hydroeval',
+    project_urls={
+        "Documentation": "https://thibhlln.github.io/hydroeval",
+        "Source": "https://github.com/thibhlln/hydroeval",
+        "Tracker": "https://github.com/thibhlln/hydroeval/issues",
+    },
 
     author='Thibault Hallouin',
     author_email='thibault.hallouin@ucdconnect.ie',
@@ -43,8 +48,8 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: Implementation :: CPython'
     ],
 

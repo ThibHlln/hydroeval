@@ -1,4 +1,4 @@
 Licence
 =======
 
-.. mdinclude:: ../../LICENCE.md
+.. include:: ../../LICENCE.rst
