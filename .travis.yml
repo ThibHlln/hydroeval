@@ -9,4 +9,4 @@ install:
   - pip install numpy
   - pip install -e .
 script:
-  - python tests/run_all_test.py
+  - python tests/run_all_tests.py
