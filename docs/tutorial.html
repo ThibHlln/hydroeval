@@ -92,13 +92,9 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a></li>
-</ul>
-<p class="caption"><span class="caption-text">User Guide</span></p>
-<ul class="current">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 <li class="toctree-l1"><a class="reference internal" href="licence.html">Licence</a></li>
@@ -207,7 +203,7 @@ time series.</p>
 to reproduce this tutorial. Because this is a NetCDF file, we are going
 to use the Python package <code class="xref py py-obj docutils literal notranslate"><span class="pre">netCDF4</span></code> to read the data in, but <code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code>
 is independent of the file format you are working with because it only
-requires <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> as inputs for streamflow time series.</p>
+requires <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> as inputs for streamflow time series.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Reading in the streamflow dataset.</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
@@ -263,7 +259,7 @@ In this example, this is not the case, so we need to specify explicitly
 that it is on <code class="xref py py-obj docutils literal notranslate"><span class="pre">axis=1</span></code>.</p>
 <p>For single-component objective functions such as <a class="reference internal" href="functions/hydroeval.nse.html#hydroeval.nse" title="hydroeval.nse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nse</span></code></a>, the value returned
 is either a scalar if only one simulation time series is evaluated, or
-a 1-dimensional <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> if the several simulation time series are
+a 1-dimensional <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> if the several simulation time series are
 evaluated.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">Calculating the Nash-Sutcliffe Efficiency <a class="reference internal" href="functions/hydroeval.nse.html#hydroeval.nse" title="hydroeval.nse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nse</span></code></a>.</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
@@ -280,7 +276,7 @@ evaluated.</p>
 <p class="admonition-title">Note</p>
 <p><code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code> performs pairwise deletion
 when missing values in the observed streamflow timeseries occur. Missing
-values should be set to <a class="reference external" href="https://numpy.org/doc/stable/reference/constants.html#numpy.nan" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.nan</span></code></a> (Not A Number) in the observed numpy
+values should be set to <a class="reference external" href="https://numpy.org/doc/stable/reference/constants.html#numpy.nan" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.nan</span></code></a> (Not A Number) in the observed numpy
 array for <code class="xref py py-obj docutils literal notranslate"><span class="pre">hydroeval</span></code> to be aware of the positions of the values to
 pairwise delete in both observed and simulated time series.</p>
 </div>
@@ -315,7 +311,7 @@ in the objective function).</p>
         
         &copy; Copyright 2021, Thibault Hallouin.
       <span class="lastupdated">
-        Last updated on Jan 25, 2021.
+        Last updated on Mar 28, 2021.
       </span>
 
     </p>

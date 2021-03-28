@@ -68,3 +68,32 @@
    font-size:90%;
    white-space:nowrap
 }
+
+
+/* override style class and attributes */
+html.writer-html4 .rst-content dl:not(.docutils)>dt,
+html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple)>dt {
+	display: table;
+	margin: 6px 0;
+	font-size: 90%;
+    font-weight:400;
+	line-height: normal;
+	padding: 6px;
+	position: relative
+}
+
+html.writer-html4 .rst-content dl:not(.docutils) code.descclassname,
+html.writer-html4 .rst-content dl:not(.docutils) tt.descclassname,
+html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple) code.descclassname,
+html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple) tt.descclassname {
+	font-weight:400
+}
+
+html.writer-html4 .rst-content dl:not(.docutils) dl:not(.field-list)>dt,
+html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple) dl:not(.field-list)>dt {
+	/* background: #FAF0E6; */
+	/* color: #ab7842; */
+	/* border-left: 3px solid #DEA66A; */
+    padding-left: 6px;
+	font-weight:400
+}

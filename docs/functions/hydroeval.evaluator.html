@@ -43,7 +43,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Objective functions" href="hydroeval.objective_functions.html" />
-    <link rel="prev" title="API" href="../api.html" /> 
+    <link rel="prev" title="API Reference" href="../api_reference.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,13 +92,9 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Overview</a></li>
-</ul>
-<p class="caption"><span class="caption-text">User Guide</span></p>
-<ul class="current">
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Evaluator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hydroeval.objective_functions.html">Objective functions</a></li>
 </ul>
@@ -152,7 +148,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../api.html">API</a> &raquo;</li>
+          <li><a href="../api_reference.html">API Reference</a> &raquo;</li>
         
       <li>Evaluator</li>
     
@@ -199,12 +195,12 @@
 <h1>Evaluator<a class="headerlink" href="#evaluator" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="hydroeval.evaluator">
-<code class="sig-name descname">evaluator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj_fn</span></em>, <em class="sig-param"><span class="n">simulations</span></em>, <em class="sig-param"><span class="n">evaluation</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">epsilon</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#hydroeval.evaluator" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">hydroeval.</code><code class="sig-name descname">evaluator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj_fn</span></em>, <em class="sig-param"><span class="n">simulations</span></em>, <em class="sig-param"><span class="n">evaluation</span></em>, <em class="sig-param"><span class="n">axis</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">epsilon</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#hydroeval.evaluator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate the goodness of fit between one time series of simulated
 streamflow stored in a 1D array (or several time series of equal
 length stored in a 2D array) and one time series of the corresponding
 observed streamflow for the same period stored in a 1D array. Missing
-values can be set as <a class="reference external" href="https://numpy.org/doc/stable/reference/constants.html#numpy.nan" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.nan</span></code></a> for paiwise deletion to be performed.</p>
+values can be set as <a class="reference external" href="https://numpy.org/doc/stable/reference/constants.html#numpy.nan" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.nan</span></code></a> for paiwise deletion to be performed.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
@@ -231,7 +227,7 @@ array can be one or two dimensional. If it is 2D, the
 dimension specified through <em>axis</em> must be of size 1.
 Moreover, the length of the <em>evaluation</em> series must match
 the length of <em>simulations</em> series ― missing values must
-be set as <a class="reference external" href="https://numpy.org/doc/stable/reference/constants.html#numpy.nan" title="(in NumPy v1.19)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.nan</span></code></a> so that pairwise deletion in both
+be set as <a class="reference external" href="https://numpy.org/doc/stable/reference/constants.html#numpy.nan" title="(in NumPy v1.20)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.nan</span></code></a> so that pairwise deletion in both
 <em>simulations</em> and <em>evaluation</em> series can be performed prior
 the calculation of the <em>obj_fn</em>.</p>
 </dd>
@@ -356,7 +352,7 @@ added to all flows to avoid zero flows. <em>epsilon</em> is customisable.</p>
         
         &copy; Copyright 2021, Thibault Hallouin.
       <span class="lastupdated">
-        Last updated on Jan 25, 2021.
+        Last updated on Mar 28, 2021.
       </span>
 
     </p>

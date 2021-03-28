@@ -1,8 +1,8 @@
 .. currentmodule:: hydroeval
 .. default-role:: obj
 
-API
-===
+API Reference
+=============
 
 `hydroeval` comes with an `evaluator` that pre-processes the input
 arrays and calculates the desired objective functions.
