@@ -13,15 +13,15 @@ setup(
 
     version=__version__,
 
-    description='HydroEval: An Efficient Evaluator for Streamflow Time Series In Python',
+    description='HydroEval: An Evaluator for Streamflow Time Series In Python',
     long_description=long_desc,
     long_description_content_type="text/x-rst",
 
-    url='https://thibhlln.github.io/hydroeval',
+    download_url="https://pypi.python.org/pypi/hydroeval",
     project_urls={
+        "Bug Tracker": "https://github.com/thibhlln/hydroeval/issues",
+        "Source Code": "https://github.com/thibhlln/hydroeval",
         "Documentation": "https://thibhlln.github.io/hydroeval",
-        "Source": "https://github.com/thibhlln/hydroeval",
-        "Tracker": "https://github.com/thibhlln/hydroeval/issues",
     },
 
     author='Thibault Hallouin',
