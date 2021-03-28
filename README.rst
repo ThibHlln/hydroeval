@@ -1,3 +1,6 @@
+An evaluator for streamflow time series in Python
+-------------------------------------------------
+
 .. image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
    :alt: License: GPL v3
@@ -10,9 +13,6 @@
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.2591217.svg
    :target: https://doi.org/10.5281/zenodo.2591217
    :alt: DOI
-
-An evaluator for streamflow time series in Python
--------------------------------------------------
 
 `hydroeval` is an open-source `evaluator` of goodness of fit between
 simulated and observed streamflow time series in Python. It is licensed
