@@ -7,9 +7,9 @@ An evaluator for streamflow time series in Python
 .. image:: https://badge.fury.io/py/hydroeval.svg
    :target: https://pypi.python.org/pypi/hydroeval
    :alt: PyPI Version
-.. image:: https://www.travis-ci.org/ThibHlln/hydroeval.svg?branch=master
-   :target: https://www.travis-ci.org/ThibHlln/hydroeval
-   :alt: Travis CI Build Status
+.. image:: https://img.shields.io/github/workflow/status/ThibHlln/hydroeval/Tests?label=tests
+   :target: https://github.com/ThibHlln/hydroeval/actions/workflows/tests.yml
+   :alt: GitHub Actions Test Workflow Status
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.2591217.svg
    :target: https://doi.org/10.5281/zenodo.2591217
    :alt: DOI
