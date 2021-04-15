@@ -1,0 +1,47 @@
+name: Tests
+
+on:
+  pull_request:
+    types: [ready_for_review]
+
+jobs:
+
+  run-tests:
+  
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [3.7, 3.8, 3.9]
+        
+    runs-on: ${{ matrix.os }}
+    
+    defaults:
+      run:
+        shell: bash -l {0}
+    
+    steps:
+    
+      - name: check out repository
+        uses: actions/checkout@v2
+          
+      - name: set up conda environment
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: testing-env
+          python-version: ${{ matrix.python-version }}
+          auto-update-conda: true
+          mamba-version: "*"
+          channels: conda-forge
+          channel-priority: true
+          
+      - name: install package dependencies
+        run: |
+          mamba install numpy
+          
+      - name: install package
+        run: |
+          pip install -e .
+          
+      - name: run all tests
+        run: |
+          (cd ./tests && python run_all_tests.py)
