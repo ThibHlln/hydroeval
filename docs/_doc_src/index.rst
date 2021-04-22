@@ -12,5 +12,6 @@
    installation
    api_reference
    tutorial
+   support
    genindex
    licence
