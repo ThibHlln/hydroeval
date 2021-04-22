@@ -69,7 +69,6 @@
    white-space:nowrap
 }
 
-
 /* override style class and attributes */
 html.writer-html4 .rst-content dl:not(.docutils)>dt,
 html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple)>dt {
@@ -91,9 +90,6 @@ html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(
 
 html.writer-html4 .rst-content dl:not(.docutils) dl:not(.field-list)>dt,
 html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple) dl:not(.field-list)>dt {
-	/* background: #FAF0E6; */
-	/* color: #ab7842; */
-	/* border-left: 3px solid #DEA66A; */
     padding-left: 6px;
 	font-weight:400
 }
