@@ -187,7 +187,11 @@ html_context = {
     'versions': versions,
     'show_versions': True if versions else False,
     'links': [
-        ('<span class="fa fa-github"> GitHub Repository', remote_url)
+        ('<span class="fa fa-code"> Source Code', remote_url),
+        ('<span class="fa fa-bug"> Issue Tracker',
+         os.sep.join([remote_url.replace('.git', ''), 'issues'])),
+        ('<span class="fa fa-users"> User Support',
+         os.sep.join([remote_url.replace('.git', ''), 'discussions']))
     ]
 }
 
