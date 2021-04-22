@@ -1,18 +1,18 @@
 An evaluator for streamflow time series in Python
 -------------------------------------------------
 
+.. image:: https://img.shields.io/pypi/v/hydroeval?color=blue
+   :target: https://pypi.python.org/pypi/hydroeval
+   :alt: PyPI Version
+.. image:: https://zenodo.org/badge/145855846.svg
+   :target: https://zenodo.org/badge/latestdoi/145855846
+   :alt: DOI
 .. image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
    :alt: License: GPL v3
-.. image:: https://badge.fury.io/py/hydroeval.svg
-   :target: https://pypi.python.org/pypi/hydroeval
-   :alt: PyPI Version
 .. image:: https://img.shields.io/github/workflow/status/ThibHlln/hydroeval/Tests?label=tests
    :target: https://github.com/ThibHlln/hydroeval/actions/workflows/tests.yml
    :alt: GitHub Actions Test Workflow Status
-.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.2591217.svg
-   :target: https://doi.org/10.5281/zenodo.2591217
-   :alt: DOI
 
 `hydroeval` is an open-source `evaluator` of goodness of fit between
 simulated and observed streamflow time series in Python. It is licensed
