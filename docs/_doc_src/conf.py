@@ -180,14 +180,18 @@ versions = [
     (tag.name,
      os.sep.join([html_theme_options['canonical_url'],
                   tag.name if tag.name != 'v{}'.format(version) else '']))
-    for tag in repo.tags if tag.name >= 'v0.0.3'
+    for tag in repo.tags if tag.name >= 'v0.1.0'
 ]
 html_context = {
     'current_version': version,
     'versions': versions,
     'show_versions': True if versions else False,
     'links': [
-        ('<span class="fa fa-github"> GitHub Repository', remote_url)
+        ('<span class="fa fa-code"> Source Code', remote_url),
+        ('<span class="fa fa-bug"> Issue Tracker',
+         os.sep.join([remote_url.replace('.git', ''), 'issues'])),
+        ('<span class="fa fa-users"> User Support',
+         os.sep.join([remote_url.replace('.git', ''), 'discussions']))
     ]
 }
 
