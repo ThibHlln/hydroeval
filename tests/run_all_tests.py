@@ -14,4 +14,7 @@ if __name__ == '__main__':
     test_suite.addTests(doctest.DocTestSuite(hydroeval.hydroeval))
 
     runner = unittest.TextTestRunner(verbosity=2)
-    runner.run(test_suite)
+    result = runner.run(test_suite)
+
+    if not result.wasSuccessful():
+        exit(1)
