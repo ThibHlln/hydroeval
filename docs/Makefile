@@ -1,5 +1,6 @@
 # Minimal makefile for Sphinx documentation
 #
+.ONESHELL:
 
 # You can set these variables from the command line, and also
 # from the environment for the first two.
@@ -23,11 +24,23 @@ clean:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 github_clean:
-	@make clean
-	rm -rf _static _sources
-	rm -rf functions
-	rm -rf *.html *.inv *.js .buildinfo
+	@make local_clean
+	find . \( -type d -maxdepth 1 ! -name "." \) \
+	-and \( -type d -maxdepth 1 ! -name "*.*.*" \) \
+	-and \( -type d -maxdepth 1 ! -name "_doc_*" \) \
+	-exec rm -rf {} +
 
-github:
-	@make html
-	@cp -a $(BUILDDIR)/html/. .
+github_html:
+	@make github_clean
+	@make local_html
+	cp -a $(BUILDDIR)/html/. .
+ifdef VERSION_RELEASE
+	cp -a $(BUILDDIR)/html/. ./$(VERSION_RELEASE)
+endif
+
+local_clean:
+	rm -rf $(BUILDDIR)/*
+
+local_html:
+	@make local_clean
+	$(MAKE) html

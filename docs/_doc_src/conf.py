@@ -29,8 +29,12 @@ copyright = '{}, Thibault Hallouin.'.format(
 author = 'Thibault Hallouin'
 
 # The full version, including alpha/beta/rc tags
-release = __version__
-version = __version__
+if os.getenv('VERSION_RELEASE'):
+    release = 'v{}'.format(__version__)
+    version = 'v{}'.format(__version__)
+else:
+    release = 'latest'
+    version = 'latest'
 
 # -- General configuration ---------------------------------------------------
 
@@ -143,10 +147,12 @@ html_sidebars = {
 # https://alabaster.readthedocs.io/en/latest/customization.html
 # https://github.com/bitprophet/alabaster/blob/master/alabaster/theme.conf
 
+html_baseurl = 'https://thibhlln.github.io/hydroeval'
+
 html_theme_options = {
-    'canonical_url': 'https://thibhlln.github.io/hydroeval',
     'prev_next_buttons_location': None,
-    'navigation_depth': 3
+    'navigation_depth': 3,
+    'display_version': True
 }
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page
@@ -177,13 +183,17 @@ repo = Repo(search_parent_directories=True)
 remote_url = repo.remotes.origin.url
 
 versions = [
-    (tag.name,
-     os.sep.join([html_theme_options['canonical_url'],
-                  tag.name if tag.name != 'v{}'.format(version) else '']))
+    (tag.name, '/'.join([html_baseurl, tag.name[1:]]))
     for tag in repo.tags if tag.name >= 'v0.1.0'
 ]
+
+if version != 'latest':
+    if (version, '/'.join([html_baseurl, __version__])) not in versions:
+        versions.insert(0, (version, '/'.join([html_baseurl, __version__])))
+versions.insert(0, ('latest', html_baseurl))
+
 html_context = {
-    'current_version': version,
+    'current_version': version if version == 'latest' else __version__,
     'versions': versions,
     'show_versions': True if versions else False,
     'links': [
