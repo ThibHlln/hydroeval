@@ -1,5 +1,14 @@
 .. default-role:: obj
 
+latest
+------
+
+Yet to be versioned and released. Only available from *dev* branch until then.
+
+.. rubric:: Tests
+
+* add explicit failing exit code to test suite to let GitHub Actions workflow
+  know not all tests succeeded
 
 v0.1.0
 ------
