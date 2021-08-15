@@ -8,6 +8,18 @@ with open("README.rst", "r") as fd:
 with open('hydroeval/version.py') as fv:
     exec(fv.read())
 
+
+def requirements(filename):
+    requires = []
+    with open(filename, 'r') as fr:
+        for line in fr:
+            package = line.strip()
+            if package:
+                requires.append(package)
+
+    return requires
+
+
 setup(
     name='hydroeval',
 
@@ -53,7 +65,5 @@ setup(
 
     packages=['hydroeval'],
 
-    install_requires=[
-        'numpy'
-    ],
+    install_requires=requirements('requirements.txt'),
 )
