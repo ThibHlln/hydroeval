@@ -1,0 +1,95 @@
+/* override table width restrictions */
+@media screen and (min-width: 767px) {
+
+   .wy-table-responsive table td {
+      /* !important prevents the common CSS stylesheets from overriding
+         this as on RTD they are loaded after this stylesheet */
+      white-space: normal !important;
+   }
+
+   .wy-table-responsive {
+      overflow: visible !important;
+   }
+
+}
+
+/* replace slightly off grey (#f3f6f6) for odd rows in tables
+   with proper grey one (#f6f6f6) */
+.rst-content table.docutils:not(.field-list) tr:nth-child(2n-1) td, .wy-table-backed, .wy-table-odd td, .wy-table-striped tr:nth-child(2n-1) td {
+   background-color: #f6f6f6;
+}
+
+/* override hyperlink style for images */
+.rst-content a.image-reference:link, .rst-content a.image-reference:visited{
+   border-bottom: none
+}
+
+.rst-content a.image-reference:hover{
+   border-bottom: none
+}
+
+/* override hyperlink style for rst content */
+.rst-content a:link, .rst-content a:visited{
+   color:#2980b9;
+   text-decoration: none;
+   border-bottom: 1px dotted #2980b9
+}
+.rst-content a:hover{
+   color:#3091d1;
+   border-bottom: 1px solid #3091d1
+}
+
+/* override hyperlink style for breadcrumbs (top navigation) */
+.wy-breadcrumbs a:link, .wy-breadcrumbs a:visited{
+   border-bottom: none
+}
+.wy-breadcrumbs a:hover{
+   border-bottom: none
+}
+
+/* override hyperlink style for code literals */
+.rst-content a:hover code.literal{
+   color: #3091d1;
+}
+
+/* override vertical menu caption style */
+.wy-menu-vertical p.caption{
+   color:#55a5d9;
+   height:32px;
+   line-height:32px;
+   /* override padding:0 1.618em */
+   padding:0 1.578em;
+   margin:12px 0 0;
+   display:block;
+   font-weight:700;
+   /* override text-transform:uppercase */
+   text-transform:capitalize;
+   /* override font-size:85% */
+   font-size:90%;
+   white-space:nowrap
+}
+
+/* override style class and attributes */
+html.writer-html4 .rst-content dl:not(.docutils)>dt,
+html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple)>dt {
+	display: table;
+	margin: 6px 0;
+	font-size: 90%;
+    font-weight:400;
+	line-height: normal;
+	padding: 6px;
+	position: relative
+}
+
+html.writer-html4 .rst-content dl:not(.docutils) code.descclassname,
+html.writer-html4 .rst-content dl:not(.docutils) tt.descclassname,
+html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple) code.descclassname,
+html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple) tt.descclassname {
+	font-weight:400
+}
+
+html.writer-html4 .rst-content dl:not(.docutils) dl:not(.field-list)>dt,
+html.writer-html5 .rst-content dl[class]:not(.option-list):not(.field-list):not(.footnote):not(.glossary):not(.simple) dl:not(.field-list)>dt {
+    padding-left: 6px;
+	font-weight:400
+}
