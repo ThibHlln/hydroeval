@@ -23,7 +23,7 @@ with open('../../hydroeval/version.py') as fv:
 
 # -- Project information -----------------------------------------------------
 project = 'hydroeval'
-copyright = '{}, Thibault Hallouin.'.format(
+copyright = '2018-{}, Thibault Hallouin'.format(
     datetime.now().year
 )
 author = 'Thibault Hallouin'
