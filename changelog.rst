@@ -22,6 +22,8 @@ Released on 2021-04-22.
 .. rubric:: API changes
 
 * `evaluator` now supports any array-like object, e.g. `numpy.array`, `list`
+* rename `evaluator`'s parameter from *simulation_s* to *simulations*
+  **[break backwards compatibility]**
 
 .. rubric:: Tests
 
