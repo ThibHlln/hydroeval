@@ -33,7 +33,8 @@ follows (click on the link to get the DOI of a specific version):
 
    *Hallouin, T. (XXXX). hydroeval: an evaluator for streamflow time series in Python (Version X.X.X). Zenodo.* `<https://doi.org/10.5281/zenodo.2591217>`_
 
-.. rubric:: Brief overview of the API
+Brief overview of the API
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -47,7 +48,8 @@ follows (click on the link to get the DOI of a specific version):
    kge, r, alpha, beta = he.evaluator(he.kge, simulations, evaluations)
 
 
-.. rubric:: Objective functions available
+Objective functions available
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The objective functions currently available in `hydroeval` to evaluate the fit
 between observed and simulated streamflow time series are as follows:
@@ -77,7 +79,8 @@ The possible transformations are as follows:
 * Square Root-transformed flows (using `transform='sqrt'`)
 * Natural Logarithm-transformed flows (using `transform='log'`)
 
-.. rubric:: Acknowledgement
+Acknowledgement
+~~~~~~~~~~~~~~~
 
 Early versions of this tool were developed with the financial support of
 Ireland's Environmental Protection Agency (Grant Number 2014-W-LS-5).
