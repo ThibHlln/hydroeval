@@ -13,10 +13,11 @@ time series.
 
    >>> import hydroeval
    >>> print(hydroeval.__version__)
-   0.0.3
+   0.1.0
 
 
-.. rubric:: Load streamflow time series
+Load streamflow time series
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Example files are provided in the folder *sample_data/* in order for anyone
 to reproduce this tutorial. Because this is a NetCDF file, we are going
@@ -68,7 +69,8 @@ units are equal.
    True
 
 
-.. rubric:: Calculate any available objective function
+Calculate any available objective function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now that the dataset is loaded in memory, it is time to use `hydroeval`
 to compare the simulated and observed hydrograph(s). To do so, import
