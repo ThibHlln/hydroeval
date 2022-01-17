@@ -1,0 +1,19 @@
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <div class="footer-item">
+      <p class="copyright">
+        {%- if hasdoc('copyright') %}
+            {% trans path=pathto('copyright'), copyright=copyright|e %}&copy; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %}<br>
+        {%- else %}
+            {% trans copyright=copyright|e %}&copy; Copyright {{ copyright }}.{% endtrans %}
+        {%- endif %}
+      </p>
+    </div>
+    <div class="footer-item">
+      <p class="sphinx-version">
+        {% trans sphinx_version=sphinx_version|e %}Created using <a href="http://sphinx-doc.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %}
+        {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}<br>
+      </p>
+    </div>
+  </div>
+</footer>
