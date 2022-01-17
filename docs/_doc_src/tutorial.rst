@@ -13,7 +13,7 @@ time series.
 
    >>> import hydroeval
    >>> print(hydroeval.__version__)
-   0.0.3
+   0.1.0
 
 
 Load streamflow time series
