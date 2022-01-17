@@ -1,18 +1,21 @@
 An evaluator for streamflow time series in Python
 -------------------------------------------------
 
-.. image:: https://img.shields.io/pypi/v/hydroeval?color=blue
+.. image:: https://img.shields.io/pypi/v/hydroeval?style=flat-square&color=00b0f0
    :target: https://pypi.python.org/pypi/hydroeval
    :alt: PyPI Version
-.. image:: https://zenodo.org/badge/145855846.svg
+.. image:: https://img.shields.io/badge/dynamic/json?url=https://zenodo.org/api/records/2591217&label=doi&query=doi&style=flat-square&color=00b0f0
    :target: https://zenodo.org/badge/latestdoi/145855846
    :alt: DOI
-.. image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg
+.. image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat-square&color=00b0f0
    :target: https://www.gnu.org/licenses/gpl-3.0
    :alt: License: GPL v3
-.. image:: https://img.shields.io/github/workflow/status/ThibHlln/hydroeval/Tests?label=tests
+.. image:: https://img.shields.io/badge/fair-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B-yellow?style=flat-square
+   :target: https://fair-software.eu
+   :alt: FAIR Software Compliance
+.. image:: https://img.shields.io/github/workflow/status/ThibHlln/hydroeval/Tests?style=flat-square&label=tests
    :target: https://github.com/ThibHlln/hydroeval/actions/workflows/tests.yml
-   :alt: GitHub Actions Test Workflow Status
+   :alt: Tests Status
 
 `hydroeval` is an open-source `evaluator` of goodness of fit between
 simulated and observed streamflow time series in Python. It is licensed
@@ -28,9 +31,10 @@ follows (click on the link to get the DOI of a specific version):
 
 .. pull-quote::
 
-   *Hallouin, T. (XXXX). HydroEval: Streamflow Simulations Evaluator (Version X.X.X). Zenodo.* `<https://doi.org/10.5281/zenodo.2591217>`_
+   *Hallouin, T. (XXXX). hydroeval: an evaluator for streamflow time series in Python (Version X.X.X). Zenodo.* `<https://doi.org/10.5281/zenodo.2591217>`_
 
-.. rubric:: Brief overview of the API
+Brief overview of the API
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -44,7 +48,8 @@ follows (click on the link to get the DOI of a specific version):
    kge, r, alpha, beta = he.evaluator(he.kge, simulations, evaluations)
 
 
-.. rubric:: Objective functions available
+Objective functions available
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The objective functions currently available in `hydroeval` to evaluate the fit
 between observed and simulated streamflow time series are as follows:
@@ -74,7 +79,8 @@ The possible transformations are as follows:
 * Square Root-transformed flows (using `transform='sqrt'`)
 * Natural Logarithm-transformed flows (using `transform='log'`)
 
-.. rubric:: Acknowledgement
+Acknowledgement
+~~~~~~~~~~~~~~~
 
 Early versions of this tool were developed with the financial support of
 Ireland's Environmental Protection Agency (Grant Number 2014-W-LS-5).

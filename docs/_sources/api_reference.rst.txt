@@ -4,8 +4,8 @@
 API Reference
 =============
 
-`hydroeval` comes with an `evaluator` that pre-processes the input
-arrays and calculates the desired objective functions.
+`hydroeval` comes with an `evaluator` function that pre-processes the
+input arrays and calculates the desired objective function(s).
 
 .. toctree::
    :maxdepth: 1
