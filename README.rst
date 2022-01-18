@@ -1,13 +1,13 @@
 An evaluator for streamflow time series in Python
 -------------------------------------------------
 
-.. image:: https://img.shields.io/pypi/v/hydroeval?style=flat-square&color=00b0f0
+.. image:: https://img.shields.io/pypi/v/hydroeval?style=flat-square
    :target: https://pypi.python.org/pypi/hydroeval
    :alt: PyPI Version
-.. image:: https://img.shields.io/badge/dynamic/json?url=https://zenodo.org/api/records/2591217&label=doi&query=doi&style=flat-square&color=00b0f0
+.. image:: https://img.shields.io/badge/dynamic/json?url=https://zenodo.org/api/records/2591217&label=doi&query=doi&style=flat-square
    :target: https://zenodo.org/badge/latestdoi/145855846
    :alt: DOI
-.. image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat-square&color=00b0f0
+.. image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat-square
    :target: https://www.gnu.org/licenses/gpl-3.0
    :alt: License: GPL v3
 .. image:: https://img.shields.io/badge/fair-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B-yellow?style=flat-square
