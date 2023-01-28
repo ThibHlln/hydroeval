@@ -7,17 +7,17 @@ Installation
 If you wish to install the most recent stable version of `hydroeval`,
 it is available on the Python Package Index (PyPI), simply run:
 
-.. code-block:: bash
+.. code-block:: console
 
-   pip install hydroeval
+   $ pip install hydroeval
 
 If you need the latest, potentially unstable, features listed in the
 :doc:`change log <changelog>`, please use the *dev* branch on the
 GitHub repository:
 
-.. code-block:: bash
+.. code-block:: console
 
-   pip install git+https://github.com/ThibHlln/hydroeval.git@dev
+   $ pip install git+https://github.com/ThibHlln/hydroeval.git@dev
 
 .. rubric:: Requirements
 
