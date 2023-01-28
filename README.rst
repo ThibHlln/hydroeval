@@ -7,7 +7,7 @@ An evaluator for streamflow time series in Python
 .. image:: https://img.shields.io/badge/dynamic/json?url=https://zenodo.org/api/records/2591217&label=doi&query=doi&style=flat-square
    :target: https://zenodo.org/badge/latestdoi/145855846
    :alt: DOI
-.. image:: https://img.shields.io/badge/License-GPL%20v3-blue.svg?style=flat-square
+.. image:: https://img.shields.io/badge/License-GPL%20v3-green.svg?style=flat-square
    :target: https://www.gnu.org/licenses/gpl-3.0
    :alt: License: GPL v3
 .. image:: https://img.shields.io/badge/fair-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B-yellow?style=flat-square
