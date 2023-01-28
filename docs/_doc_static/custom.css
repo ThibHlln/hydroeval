@@ -12,23 +12,6 @@
     --pst-font-size-h5: 18px;
     --pst-font-size-h6: 16px;
 
-    --pst-color-primary: 77, 77, 77;
-    --pst-color-success: 146, 208, 80;
-    --pst-color-info: 0, 176, 240;
-    --pst-color-warning: 171, 121, 66;
-    --pst-color-danger: 220, 53, 69;
-
-    --pst-color-text-base: 77, 77, 77;
-
-    --pst-color-active-navigation: 0, 176, 240;
-
-    --pst-color-link: 0, 176, 240;
-    --pst-color-link-hover: 0, 176, 240;
-
-    --pst-color-preformatted-background: 250, 250, 250;
-    --pst-color-block-code: 51, 51, 51;
-    --pst-color-inline-code: 0, 0, 0;
-
     --pst-color-headerlink: var(--pst-color-link);
     --pst-color-headerlink-hover: var(--pst-color-link-hover);
 
@@ -37,9 +20,107 @@
     --pst-font-family-monospace: var(--pst-font-family-monospace-system);
 }
 
+
+html[data-theme="light"] {
+    --pst-color-primary: rgb(0, 176, 240);
+    --pst-color-success: rgb(146, 208, 80);
+    --pst-color-info: rgb(0, 176, 240);
+    --pst-color-warning: rgb(171, 121, 66);
+    --pst-color-danger: rgb(220, 53, 69);
+
+    --pst-color-text-base: rgb(77, 77, 77);
+    --pst-color-border: rgb(201, 201, 201);
+
+    --pst-color-active-navigation: rgb(0, 176, 240);
+
+    --pst-color-link: rgb(0, 176, 240);
+    --pst-color-link-hover: rgb(0, 176, 240);
+    --pst-color-link-active: rgb(146, 208, 80);
+
+    --pst-color-preformatted-background: rgb(250, 250, 250);
+    --pst-color-surface: var(--pst-color-preformatted-background);
+    --pst-color-on-background: rgb(255, 255, 255);
+    --pst-color-panel-background: rgb(252, 252, 252);
+    --pst-color-block-code: rgb(51, 51, 51);
+    --pst-color-inline-code: rgb(0, 0, 0);
+
+    --pst-color-shadow: rgba(0, 0, 0, .05);
+
+    --pst-color-headerlink: var(--pst-color-link);
+    --pst-color-headerlink-hover: var(--pst-color-link-hover);
+
+    /* override style for tabbed sphinx panels */
+    --tabs-color-label-active: rgb(0, 176, 240);
+    --tabs-color-label-inactive: rgba(0, 0, 0, .1);
+    --pst-color-deactive-navigation: var(--tabs-color-label-inactive);
+    --tabs-color-overline: rgba(0, 0, 0, .1);
+    --tabs-color-underline: var(--tabs-color-overline);
+    --my-shadow: var(--pst-color-shadow);
+}
+
+html[data-theme="dark"] {
+    --pst-color-primary: rgb(0, 176, 240);
+    --pst-color-success: rgb(146, 208, 80);
+    --pst-color-info: rgb(0, 176, 240);
+    --pst-color-warning: rgb(171, 121, 66);
+    --pst-color-danger: rgb(220, 53, 69);
+
+    --pst-color-text-base: rgb(209, 209, 209);
+    --pst-color-border: rgb(72, 72, 72);
+
+    --pst-color-active-navigation: rgb(0, 176, 240);
+
+    --pst-color-link: rgb(0, 176, 240);
+    --pst-color-link-hover: rgb(0, 176, 240);
+    --pst-color-link-active: rgb(146, 208, 80);
+
+    --pst-color-preformatted-background: rgb(40, 40, 40);
+    --pst-color-surface: var(--pst-color-preformatted-background);
+    --pst-color-on-background: rgb(18, 18, 18);
+    --pst-color-panel-background: rgb(25, 25, 25);
+    --pst-color-block-code: rgb(231, 231, 231);
+    --pst-color-inline-code: rgb(255, 255, 255);
+
+    --pst-color-shadow: rgba(255, 255, 255, .05);
+
+    --pst-color-headerlink: var(--pst-color-link);
+    --pst-color-headerlink-hover: var(--pst-color-link-hover);
+
+    /* override style for tabbed sphinx panels */
+    --tabs-color-label-active: rgb(0, 176, 240);
+    --tabs-color-label-inactive: rgba(255, 255, 255, .2);
+    --pst-color-deactive-navigation: var(--tabs-color-label-inactive);
+    --tabs-color-overline: rgba(255, 255, 255, .2);
+    --tabs-color-underline: var(--tabs-color-overline);
+    --my-shadow: var(--pst-color-shadow);
+}
+
+h1, h2 {
+  color: var(--pst-color-text-base);
+}
+
+/* turn off filter on image for dark mode */
+html[data-theme="dark"] img {
+    filter: none;
+}
+
+.navbar-brand img {
+    margin-bottom: 0;
+    height: 47px;
+}
+
+/* override style for nav-links */
+#navbar-icon-links i.fab::before {
+    color: rgba(var(--pst-color-text-base),1);
+}
+
+#navbar-icon-links i:hover.fab::before {
+    color: rgba(var(--pst-color-headerlink-hover),1);
+}
+
 /* override style for code blocks */
 pre {
-    border: 1px solid rgba(var(--pst-color-preformatted-background),1); /* e1e4e5 */
+    border: 1px solid var(--pst-color-preformatted-background);
     font-family: var(--pst-font-family-monospace-system);
     border-radius: 4px;
     box-shadow: none;
@@ -100,7 +181,7 @@ div.topic {
 
 /* override style for permalink */
 a.headerlink{
-    color:rgba(var(--pst-color-text-base),1);
+    color: var(--pst-color-text-base);
     text-align: center;
     padding-left: 10px;
     font-size: 14px;
@@ -108,13 +189,13 @@ a.headerlink{
 }
 a.headerlink:hover{
     background-color: transparent;
-    color:rgba(var(--pst-color-headerlink-hover),1);
+    color: var(--pst-color-headerlink-hover);
     border-bottom: hidden;
 }
 
 /* override style for hyperlinks in paragraphs */
 a {
-    color: rgba(var(--pst-color-text-base),1);
+    color: var(--pst-color-text-base);
     border-bottom: 1px dotted;
 }
 
@@ -126,17 +207,21 @@ a:hover {
 nav a, nav a:hover,
 .figure a, .figure a:hover,
 a.image-reference, a.image-reference:hover {
-    border-bottom: hidden
+    border-bottom: hidden;
+}
+
+nav a.list-group-item , nav a.list-group-item:hover {
+    border-bottom: inherit;
 }
 
 p a, .code-block-caption a code.literal {
-    color: rgba(var(--pst-color-text-base),1);
+    color: var(--pst-color-text-base);
     border-bottom: 1px dotted;
 }
 
 p a:hover, .code-block-caption a:hover code.literal {
     text-decoration: none;
-    color: rgba(var(--pst-color-link-hover),1);
+    color: var(--pst-color-link-hover);
     border-bottom: 1px solid;
 }
 
@@ -144,22 +229,23 @@ p a:hover, .code-block-caption a:hover code.literal {
 code.literal{
     font-size: 95%;
     font-weight: normal;
-    color: rgba(var(--pst-color-inline-code),1);
+    color: var(--pst-color-inline-code);
 }
 a code.literal{
     font-size: 95%;
     font-weight: normal;
-    color: rgba(var(--pst-color-inline-code),1);
+    color: var(--pst-color-inline-code);
 }
 a:hover code.literal{
     font-size: 95%;
     font-weight: normal;
-    color: rgba(var(--pst-color-link-hover),1);
+    color: var(--pst-color-link-hover);
 }
 
 /* override style for tables */
-table {
+.table {
     margin-top: 10px;
+    color: var(--pst-color-text-base);
 }
 
 /* */
@@ -169,4 +255,40 @@ dt:target, span.highlighted {
 
 rect.highlighted {
     fill: rgba(var(--pst-color-link-hover), 0.3);
+}
+
+/* override style for sphinx-panels */
+.shadow {
+    box-shadow: 0 .2rem .5rem var(--my-shadow),0 0 .0625rem var(--my-shadow) !important;
+}
+
+.bg-white {
+    background-color: var(--pst-color-background) !important;
+}
+
+/* override style for sphinx-panels */
+.btn-outline-primary {
+    color: var(--pst-color-link);
+    border-color: var(--pst-color-link);
+}
+
+.btn-outline-primary:hover {
+    color: white;
+    border-color: var(--pst-color-link-hover);
+    background-color: var(--pst-color-link-hover);
+}
+
+.btn-outline-primary:not(.disabled):not(.disabled):active {
+    color: white;
+    border-color: var(--pst-color-link-active);
+    background-color: var(--pst-color-link-active);
+}
+
+/* override style for tabbed sphinx panels */
+.tabbed-label {
+    margin-bottom: 0;
+}
+
+.tabbed-content {
+    background-color: var(--pst-color-preformatted-background);
 }
