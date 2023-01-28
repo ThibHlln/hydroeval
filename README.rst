@@ -13,7 +13,7 @@ An evaluator for streamflow time series in Python
 .. image:: https://img.shields.io/badge/fair-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B-yellow?style=flat-square
    :target: https://fair-software.eu
    :alt: FAIR Software Compliance
-.. image:: https://img.shields.io/github/workflow/status/ThibHlln/hydroeval/Tests?style=flat-square&label=tests
+.. image:: https://img.shields.io/github/actions/workflow/status/thibhlln/hydroeval/tests.yml?branch=main&style=flat-square&label=tests
    :target: https://github.com/ThibHlln/hydroeval/actions/workflows/tests.yml
    :alt: Tests Status
 
