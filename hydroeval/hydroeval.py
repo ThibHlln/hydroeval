@@ -175,8 +175,9 @@ def evaluator(obj_fn, simulations, evaluation, axis=0,
     ... )
     [0.86356266]
 
-    When using reciprocal or logarithm transform function, a default *epsilon*
-    added to all flows to avoid zero flows. *epsilon* is customisable.
+    When using the reciprocal or logarithm transform function, a default
+    *epsilon* is added to all flows to avoid zero flows. *epsilon* is
+    customisable.
 
     >>> print(
     ...     he.evaluator(
