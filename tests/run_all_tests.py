@@ -12,6 +12,7 @@ if __name__ == '__main__':
     test_suite.addTests(all_tests)
 
     test_suite.addTests(doctest.DocTestSuite(hydroeval.hydroeval))
+    test_suite.addTests(doctest.DocTestSuite(hydroeval.tutorial))
 
     runner = unittest.TextTestRunner(verbosity=2)
     result = runner.run(test_suite)

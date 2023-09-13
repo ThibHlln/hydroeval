@@ -18,3 +18,5 @@ from .hydroeval import evaluator
 
 from .objective_functions import nse, nse_c2m, kge, kge_c2m, kgeprime, kgeprime_c2m, kgenp, kgenp_c2m, rmse, mare, pbias
 from .version import __version__
+
+from . import tutorial
